@@ -54,7 +54,7 @@ function plugins:getPlugin(name,noError,key,noPrefix)
 
     if type(pluginCache[name]) == "table" and pluginCache[name].valid ~= nil then
         if pluginCache[name]:valid(key) ~= true then
-            if not noError then print("getPlugin '"..name.."':".." Not valid or compatible") end
+            if not noError then printError("getPlugin '"..name.."':".." Not valid or compatible") end
             return nil
         end
     end
@@ -74,7 +74,7 @@ function plugins:hasPlugin(name,noError,noPrefix)
         local ok, res = pcall(realRequire, pp..name)
         if not ok then
             if noError == nil or not noError then
-                print("hasPlugin '"..name.."': require failed",res)
+                printError("hasPlugin '"..name.."': require failed",res)
             end
         else
             pluginCache[name] = res
@@ -88,15 +88,15 @@ function plugins:hasPlugin(name,noError,noPrefix)
 
                 local ok2, res2 = pcall(pluginCache[name].register,pluginCache[name],_ENV)
                 if not ok2 and not noError then
-                    print("hasPlugin '"..name.."': register failed",res2)
+                    printError("hasPlugin '"..name.."': register failed",res2)
                 end
             end
         else
             if pluginCache[name] ~= nil and pluginCache[name] ~= false then
 				if type(pluginCache[name]) == "string" then 
-					print("hasPlugin '"..name.."':"..pluginCache[name])
+					printError("hasPlugin '"..name.."':"..pluginCache[name])
 				else
-					print("hasPlugin '"..name.."': not table value")
+					printError("hasPlugin '"..name.."': not table value")
 				end
                 
             end
@@ -198,7 +198,7 @@ end
 function onTimer(timerId)
     if Timer[timerId] ~= nil then
         local ok, err = pcall(Timer[timerId])
-        if not ok then print("Timer:" .. err .. "  " .. timerId) end
+        if not ok then printError("Timer:" .. err .. "  " .. timerId) end
 
         if TimerTimes[timerId] ~= nil then
             addTimer(TimerTimes[timerId], Timer[timerId])
