@@ -251,33 +251,29 @@ package.preload["slots"] = function(...)
             end)
         end
         local linkconfig = getPlugin("conf", false, "", true)
-        if slots["redstone_relay"] ~= nil then
-            for target, name in pairs(linkconfig.redstone) do
-                local name = mysplit(name, "@")
-                local block = fixName(name[1], "redstone_relay_")
-                if block == "" or block == nil then
-                    redstonelinks[target] = {
-                        wrap = baseRedstone,
-                        side = name[2]
-                    }
-                elseif slots["redstone_relay"][block] ~= nil then
-                    redstonelinks[target] = {
-                        wrap = slots["redstone_relay"][block],
-                        side = name[2]
-                    }
-                else
-                    print("Redstone relay " .. block .. " not found for target " .. target)
-                end
+        for target, name in pairs(linkconfig.redstone) do
+            local name = mysplit(name, "@")
+            local block = fixName(name[1], "redstone_relay_")
+            if block == "" or block == nil then
+                redstonelinks[target] = {
+                    wrap = baseRedstone,
+                    side = name[2]
+                }
+            elseif peripheral.isPresent(block) then
+                redstonelinks[target] = {
+                    wrap = peripheral.wrap(block),
+                    side = name[2]
+                }
+            else
+                print("Redstone relay " .. block .. " not found for target " .. target)
             end
         end
-        if slots["velocity_sensor"] ~= nil then
-            for target, block in pairs(linkconfig.vel) do
-                local block = fixName(block, "velocity_sensor_")
-                if slots["velocity_sensor"][block] ~= nil then
-                    sensors[target] = slots["velocity_sensor"][block]
-                else
-                    print("Velocity sensor " .. block .. " not found for target " .. target)
-                end
+        for target, block in pairs(linkconfig.vel) do
+            local block = fixName(block, "velocity_sensor_")
+            if peripheral.isPresent(block) then
+                sensors[target] = peripheral.wrap(block)
+            else
+                print("Velocity sensor " .. block .. " not found for target " .. target)
             end
         end
         _ENV["RedstoneAPI"] = redstoneAPI
