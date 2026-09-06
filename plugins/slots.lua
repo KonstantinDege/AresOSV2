@@ -64,7 +64,7 @@ function self:register(env)
         end
     end
     if slots["control_panel"] ~= nil then
-        for _, element in slots["control_panel"].getModules() do
+        for _, element in pairs(slots["control_panel"].getModules()) do
             if multipleSlotsCP[element.getType()] == nil then
                 slots[element.getType()] = element
             else

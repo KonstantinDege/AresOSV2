@@ -1,1 +1,679 @@
-packagePrefix=""real_time=true;package=package or{}package.preload=package.preload or{}package.preload["black_box"]=function(...)local self={}self.version=0.91;self.loadPrio=1000;local a={}function self:register(b)_ENV=b;register:addAction("onUpdate","black_box",function()print(os.clock(),SensorAPI.getYaw())end)end;return self end;package.preload["register"]=function(...)local self={}self.functionRegister={}self.taskRegister={}self.taskOrder={}local function c(d,e)if d~=nil and e~=nil then return self.taskRegister[d].order<self.taskRegister[e].order end;return nil end;local f=2500;function self:addTask(g,h,i,j)assert(type(g)=="string","addTask: name isn't a string, type was "..type(g))assert(type(h)=="function",g..": func isn't a function, type was "..type(h))if i==nil then i=10 else assert(type(i)=="number",g..": priority has to be number, type was "..type(i))end;if j==nil then j=f else assert(type(j)=="number",g..": rating has to be number, type was "..type(j))assert(j<=f,g..": rating has to be smaller then the allowed max rating of "..f)end;if not self:hasAction("onUpdate","registerTasker")then self:addAction("onUpdate","registerTasker",function()self:runTasks()end)end;if self.taskRegister[g]~=nil then self:removeTask(g)end;table.insert(self.taskOrder,g)self.taskRegister[g]={order=i,task=coroutine.create(h),rating=j}if#self.taskOrder>1 then table.sort(self.taskOrder,c)end end;function self:hasTask(g)return self.taskRegister[g]~=nil end;function self:removeTask(g)assert(type(g)=="string","removeTask: Name isn't a string, type was "..type(g))self.taskRegister[g]=nil;for k,l in pairs(self.taskOrder)do if l==g then table.remove(self.taskOrder,k)return end end end;function self:runTasks()local m=0;for n,g in ipairs(self.taskOrder)do local o=self.taskRegister[g]if m+o.rating<=f then if o.task==nil or coroutine.status(o.task)=="dead"then self:removeTask(g)else m=m+o.rating;local p,q=coroutine.resume(o.task)if not p then printError(g.." in runTasks:",q)self:removeTask(g)end end end end end;function self:hasAction(r,g)return self.functionRegister[r]~=nil and self.functionRegister[r][g]~=nil end;function self:addAction(r,g,h)assert(type(r)=="string","action isn't a string, type was "..type(r))assert(type(g)=="string",r..": name isn't a string, type was "..type(g))assert(type(h)=="function",r..":"..g..": func isn't a function, type was "..type(h))if self.functionRegister[r]==nil then self.functionRegister[r]={}end;self.functionRegister[r][g]=h end;function self:removeAction(r,g)if self.functionRegister[r]==nil or self.functionRegister[r][g]==nil then return false end;self.functionRegister[r][g]=nil;return true end;function self:callAction(r,...)local s={}if self.functionRegister[r]~=nil then if devMode then print("callAction: "..r)end;for g,h in pairs(self.functionRegister[r])do if h~=nil then local t,u=pcall(h,...)if t then s[g]=u else printError(g.." in callAction:",u)end end end end;return s end;function self:callActionSpecific(r,g,...)assert(self.functionRegister[r]=="table",r..":".." not registered")assert(self.functionRegister[r][g]=="function",r..":"..g..": called specified function isn't a function, type was "..type(self.functionRegister[r][g]))local t,u=pcall(self.functionRegister[r][g],...)if t then return u else printError(g.." in callActionSpecific:",u)end end;return self end;package.preload["slots"]=function(...)local self={}self.version=0.91;self.loadPrio=1000;local slots={}local v={"redstone_relay","velocity_sensor"}local w={"redstone_relay"}local x={{"w","s"},{"a","d"},{"q","e"}}local y={}local z={}local A={}local B={}local C=redstone;local function D(...)local E={}for n,F in ipairs({...})do for n,G in ipairs(F)do E[G]=true end end;return E end;local function H(g,I)if string.find(g,"$",1,true)then return I..g end;return g end;local function J(K,L)for n,M in ipairs(x)do if table.contains(M,K)then local N=L[M[1]]~=nil;local O=L[M[2]]~=nil;local P=0;if N and not O then P=1 elseif O and not N then P=-1 end;keyStates[table.concat(M,"_")]=P end end end;local Q=D(table.unpack(x))local keyStates={}local R={}function self:register(b)_ENV=b;for n,g in ipairs(peripheral.getNames())do if v[g]==nil then slots[peripheral.getType(g)]=peripheral.wrap(g)else if slots[peripheral.getType(g)]==nil then slots[peripheral.getType(g)]={}end;table.insert(slots[peripheral.getType(g)],peripheral.wrap(g))end end;if slots["control_panel"]~=nil then for n,S in slots["control_panel"].getModules()do if w[S.getType()]==nil then slots[S.getType()]=S else if slots[S.getType()]==nil then slots[S.getType()]={}end;table.insert(slots[S.getType()],S)end end end;if slots["linked_typewriter"]~=nil then register:addAction("onUpdate","typewriter",function()local T=slots["linked_typewriter"].getKeys()local L={}for n,U in pairs(T)do local K=keys.getName(U)L[K]=true;if R[K]==nil then R[K]=true;register:callAction(K.."Start",K)if Q[K]then J(K,L)end;keyStates[K]=1 else register:callAction(K.."Hold",K)end end;for K,n in pairs(R)do if L[K]==nil then R[K]=nil;register:callAction(K.."Stop",K)if Q[K]then J(K,L)end;keyStates[K]=0 end end end)end;local V=getPlugin("conf",true,"",true)if slots["redstone_relay"]~=nil then for g,W in pairs(V.redstone)do local X,Y=mysplit(g,"@")X=H(X,"redstone_relay_")if X==""or X==nil then z[W]={wrap=C,side=Y}elseif slots["redstone_relay"][X]~=nil then z[W]={wrap=slots["redstone_relay"][X],side=Y}else print("Redstone relay "..X.." not found for target "..W)end end end;if slots["velocity_sensor"]~=nil then for X,W in pairs(V.vel)do local X=H(X,"velocity_sensor_")if slots["velocity_sensor"][X]~=nil then y[W]=slots["velocity_sensor"][X]else print("Velocity sensor "..X.." not found for target "..W)end end end;_ENV["redstoneAPI"]=A;_ENV["sensorAPI"]=B end;function self:getToggleState(K)if keyStates[K]~=nil then return keyStates[K]end;return 0 end;function A.setOutput(W,Z)if z[W]~=nil then z[W].wrap.setOutput(z[W].side,Z)else print("Redstone target "..W.." not found")end end;function A.getOutput(W)if z[W]~=nil then return z[W].wrap.getOutput(z[W].side)end;print("Redstone target "..W.." not found")return nil end;function A.getInput(W)if z[W]~=nil then return z[W].wrap.getInput(z[W].side)end;print("Redstone target "..W.." not found")return nil end;function A.setAnalogOutput(W,G)if z[W]~=nil then if z[W].wrap.setAnalogOutput then return z[W].wrap.setAnalogOutput(z[W].side,G)elseif z[W].wrap.setAnalogueOutput then return z[W].wrap.setAnalogueOutput(z[W].side,G)end end;print("Redstone target "..W.." not found or method unavailable")return nil end;function A.setAnalogueOutput(W,G)return A.setAnalogOutput(W,G)end;function A.getAnalogOutput(W)if z[W]~=nil then if z[W].wrap.getAnalogOutput then return z[W].wrap.getAnalogOutput(z[W].side)elseif z[W].wrap.getAnalogueOutput then return z[W].wrap.getAnalogueOutput(z[W].side)end end;print("Redstone target "..W.." not found or method unavailable")return nil end;function A.getAnalogueOutput(W)return A.getAnalogOutput(W)end;function A.getAnalogInput(W)if z[W]~=nil then if z[W].wrap.getAnalogInput then return z[W].wrap.getAnalogInput(z[W].side)elseif z[W].wrap.getAnalogueInput then return z[W].wrap.getAnalogueInput(z[W].side)end end;print("Redstone target "..W.." not found or method unavailable")return nil end;function A.getAnalogueInput(W)return A.getAnalogInput(W)end;function A.getTargets()local _={}for W,n in pairs(z)do table.insert(_,W)end;return _ end;function B.getAlt()if slots["altitude_sensor"]~=nil then return slots["altitude_sensor"].getHeight()end;print("Altitude sensor not found")return nil end;function B.getPressure()if slots["altitude_sensor"]~=nil then return slots["altitude_sensor"].getAirPressure()end;print("Altitude sensor not found")return nil end;function B.getVelDown()if y["vel_down"]~=nil then return y["vel_down"].getVelocity()end;print("VelocityDown sensor not found")return nil end;function B.getVelFor()if y["vel_for"]~=nil then return y["vel_for"].getVelocity()end;print("VelocityForward sensor not found")return nil end;function B.getVelRight()if y["vel_right"]~=nil then return y["vel_right"].getVelocity()end;print("VelocityRight sensor not found")return nil end;function B.getVel()return vector.new(B.getVelRight()or 0,B.getVelDown()or 0,B.getVelFor()or 0)end;function B.getYaw()if slots["navball"]~=nil then return slots["navball"].getYaw()end;print("Navball not found")return nil end;function B.getPitch()if slots["navball"]~=nil then return slots["navball"].getPitch()end;print("Navball not found")return nil end;function B.getRoll()if slots["navball"]~=nil then return slots["navball"].getRoll()end;print("Navball not found")return nil end;function B.getAttitude()return vector.new(B.getYaw()or 0,B.getPitch()or 0,B.getRoll()or 0)end;return self end;rawPrint=print;function print_err(a0,a1)if a1 then a1=tostring(a1):gsub('"%-%- |STDERROR%-EVENTHANDLER[^"]*"','chunk'):gsub("&","&amp;"):gsub("<","&lt;"):gsub(">","&gt;")else a1="???"end;rawPrint(a0 .." "..a1)end;function print(a2)rawPrint(tostring(a2))end;local a3=require;require=function(g)return print("require '"..g.."': deprecated, use getPlugin()")end;local a4={}local a5={}function a4:fixName(g)local a6=packagePrefix;if string.find(g,a6)then g=string.gsub(g,a6,"")end;return g end;function a4:unloadPlugin(g,a7,K)assert(type(g)=="string","getPlugin: parameter name has to be string, was "..type(g))g=a4:fixName(g)local a6=packagePrefix;if type(a5[g])=="table"and a5[g].valid~=nil then if a5[g]:valid(K)~=true then return nil end end;if a7 then a6=""end;if package.loaded~=nil and package.loaded[a6 ..g]~=nil then package.loaded[a6 ..g]=nil end;if a5[g]~=nil then if type(a5[g])=="table"and type(a5[g].unregister)=="function"then a5[g].unregister()end;a5[g]=nil end end;function a4:getPlugin(g,a8,K,a7)assert(type(g)=="string","getPlugin: parameter name has to be string, was "..type(g))if a8==nil then a8=false end;g=a4:fixName(g)if not a4:hasPlugin(g,a8,a7)then return nil end;if type(a5[g])=="table"and a5[g].valid~=nil then if a5[g]:valid(K)~=true then if not a8 then printError("getPlugin '"..g.."':".." Not valid or compatible")end;return nil end end;return a5[g]end;function a4:hasPlugin(g,a8,a7)assert(type(g)=="string","hasPlugin: parameter name has to be string, was "..type(g))if a8==nil then a8=false end;g=a4:fixName(g)local a6=packagePrefix;if a7 then a6=""end;if a5[g]==nil then a5[g]=false;local p,u=pcall(a3,a6 ..g)if not p then if a8==nil or not a8 then printError("hasPlugin '"..g.."': require failed",u)end else a5[g]=u end;if type(a5[g])=="table"then if a5[g].register~=nil then if _ENV["register"]==nil then _ENV["register"]=register end;local a9,aa=pcall(a5[g].register,a5[g],_ENV)if not a9 and not a8 then printError("hasPlugin '"..g.."': register failed",aa)end end else if a5[g]~=nil and a5[g]~=false then if type(a5[g])=="string"then printError("hasPlugin '"..g.."':"..a5[g])else printError("hasPlugin '"..g.."': not table value")end end end end;return type(a5[g])=="table"end;function unloadPlugin(g,a7)return a4:unloadPlugin(g,a7)end;function hasPlugin(g,a8,a7)return a4:hasPlugin(g,a8,a7)end;function getPlugin(g,a8,K,a7)return a4:getPlugin(g,a8,K,a7)end;local ab={}function collect_keys(ac,ad)local ae={}for k in pairs(ac)do ae[#ae+1]=k end;table.sort(ae,ad)return ae end;function sortedPairs(ac,ad)local keys=collect_keys(ac,ad)local af=0;return function()af=af+1;if keys[af]then return keys[af],ac[keys[af]]end end end;function tableLength(ag)local ah=0;for n in pairs(ag)do ah=ah+1 end;return ah end;function timeit(ai,aj)collectgarbage()local ak=clock()local E=aj()local al=clock()print(ai..": "..al-ak)return E end;function getRelativePitch(am)return math.deg(math.atan(am[2],am[3]))-90 end;function getRelativeYaw(am)return math.deg(math.atan(am[2],am[1]))-90 end;function mysplit(an,ao)if ao==nil then ao="%s"end;local ac={}for a2 in string.gmatch(an,"([^"..ao.."]+)")do table.insert(ac,a2)end;return ac end;function inTable(ap,aq)if type(ap)~="table"then return false end;for k,l in pairs(ap)do if l==aq then return true,k end end;return false end;function round(ar,as)local at=10^(as or 0)if as~=nil then return math.floor(ar*at+0.5)/at else return math.floor((ar*at+0.5)/at)end end;register=getPlugin("register")slots=getPlugin("slots")local au={}local av={}function addTimer(aw,callback)if aw==nil then aw=0 end;id=os.startTimer(aw)au[id]=callback;av[id]=aw end;function onTimer(ax)if au[ax]~=nil then local p,a1=pcall(au[ax])if not p then printError("Timer:"..a1 .."  "..ax)end;if av[ax]~=nil then addTimer(av[ax],au[ax])end;au[ax]=nil;av[ax]=nil end end;function stopTimer(id)if id==nil then for k,n in pairs(au)do au[k]=nil;av[k]=nil;os.cancelTimer(k)end;return end;au[id]=nil;av[id]=nil;os.cancelTimer(id)end;function delay(h,aw)if aw==nil then aw=0 end;id=os.startTimer(aw)au[id]=callback end;register:addAction("timer","Timer",onTimer)for g,n in sortedPairs(package.preload)do getPlugin(g,true)end;sleep(0.1)register:callAction("StartUp")sleep()local function ay()while true do register:callAction("onUpdate")register:runTasks()sleep(0)end end;local function az()while true do local aA=os.pullEvent()register:callAction(table.unpack(aA))end end;if real_time then parallel.waitForAll(ay,az)end
+packagePrefix = ""
+real_time = true
+package = package or {}
+package.preload = package.preload or {}
+package.preload["black_box"] = function(...)
+    local self = {}
+    self.version = 0.91
+    self.loadPrio = 1000
+    local data = {}
+    function self:register(env)
+        _ENV = env
+        register:addAction("onUpdate", "black_box", function()
+            print(os.clock(),  SensorAPI.getYaw())
+        end)
+    end
+    return self
+end
+package.preload["register"] = function(...)
+    -- Register is handling all event registrations
+    local self = {}
+    self.functionRegister = {}
+    self.taskRegister = { }
+    self.taskOrder = {}
+    local function compareTasks(a, b)
+        if a ~= nil and b ~= nil then
+            return self.taskRegister[a].order < self.taskRegister[b].order
+        end
+        return nil
+    end
+    --[[Adds a task that will be done one step (yield) every frame,
+        if there is not a task with lower or same priority number before that.
+        Tasks with a lot of yield and unset "rating" that run for a very long time may block important tasks.
+        "rating" is the amount of power, in relation the total cpu cycles, a task takes.
+        At the time of adding this rating, you could execute about 3500 commands before cpu overload.]]--
+    local taskMaxRating = 2500
+    function self:addTask(name, func, priority, rating)
+        assert(type(name) == "string", "addTask: name isn't a string, type was " .. type(name))
+        assert(type(func) == "function", name .. ": func isn't a function, type was " .. type(func))
+        if priority == nil then
+            priority = 10
+        else
+            assert(type(priority) == "number" ,  name .. ": priority has to be number, type was " .. type(priority))
+        end
+        if rating == nil then
+            rating = taskMaxRating
+        else
+            assert(type(rating) == "number" ,  name .. ": rating has to be number, type was " .. type(rating))
+            assert(rating <= taskMaxRating ,  name .. ": rating has to be smaller then the allowed max rating of " .. taskMaxRating)
+        end
+        if not self:hasAction("onUpdate","registerTasker") then
+            self:addAction("onUpdate","registerTasker",function() self:runTasks() end)
+        end
+        if self.taskRegister[name] ~= nil then self:removeTask(name) end
+        table.insert(self.taskOrder, name)
+        self.taskRegister[name] = {order=priority,task=coroutine.create(func),rating=rating}
+        if #self.taskOrder > 1 then table.sort(self.taskOrder,compareTasks) end
+    end
+    function self:hasTask(name)
+        return self.taskRegister[name] ~= nil
+    end
+    function self:removeTask(name)
+        assert(type(name) == "string", "removeTask: Name isn't a string, type was " .. type(name))
+        self.taskRegister[name] = nil
+        for k,v in pairs(self.taskOrder) do
+            if v == name then
+                table.remove(self.taskOrder,k)
+                return
+            end
+        end
+    end
+    function self:runTasks()
+        local currTasksRating = 0
+        for _, name in ipairs(self.taskOrder) do
+            local regTask = self.taskRegister[name]
+            if (currTasksRating + regTask.rating) <=  taskMaxRating then
+                if regTask.task == nil or coroutine.status(regTask.task) == "dead" then
+                    self:removeTask(name)
+                else
+                    currTasksRating = currTasksRating + regTask.rating
+                    local ok, errorMsg = coroutine.resume(regTask.task)
+                    if not ok then
+                        printError(name .." in runTasks:",errorMsg)
+                        self:removeTask(name)
+                    end
+                end
+            end
+        end
+    end
+    function self:hasAction(action,name)
+        return self.functionRegister[action] ~= nil and self.functionRegister[action][name] ~= nil
+    end
+    function self:addAction(action, name, func)
+        assert(type(action) == "string", "action isn't a string, type was " .. type(action))
+        assert(type(name) == "string", action .. ": name isn't a string, type was " .. type(name))
+        assert(type(func) == "function", action .. ":" .. name .. ": func isn't a function, type was " .. type(func))
+        if self.functionRegister[action] == nil then
+            self.functionRegister[action] = {}
+        end
+        self.functionRegister[action][name] = func
+    end
+    function self:removeAction(action, name)
+        if self.functionRegister[action] == nil or self.functionRegister[action][name] == nil then
+            return false
+        end
+        self.functionRegister[action][name] = nil
+        return true
+    end
+    function self:callAction(action, ...)
+        local results = {}
+        if self.functionRegister[action] ~= nil then
+            if devMode then
+                print("callAction: " .. action)
+            end
+            for name, func in pairs(self.functionRegister[action]) do
+                if func ~= nil then
+                    local status, res = pcall(func, ...)
+                    if status then
+                        results[name] = res
+                    else
+                        printError(name .." in callAction:",res)
+                    end
+                end
+            end
+        end
+        return results
+    end
+    function self:callActionSpecific(action, name, ...)
+    	assert(self.functionRegister[action] == "table", action .. ":" .. " not registered")
+    	assert(self.functionRegister[action][name] == "function", action .. ":" .. name .. ": called specified function isn't a function, type was " .. type(self.functionRegister[action][name]))
+    	local status, res = pcall(self.functionRegister[action][name], ...)
+    	if status then
+    		return res
+    	else
+    		printError(name .." in callActionSpecific:",res)
+    	end
+    end
+    return self
+end
+package.preload["slots"] = function(...)
+    local self = {}
+    self.version = 0.91
+    self.loadPrio = 1000
+    local slots = {}
+    local multipleSlots = {"redstone_relay", "velocity_sensor"}
+    local multipleSlotsCP = {"redstone_relay"}
+    local threeWayToggle = {{"w", "s"}, {"a", "d"}, {"q", "e"}}
+    local sensors = {}
+    local redstonelinks = {}
+    local redstoneAPI = {}
+    local sensorAPI = {}
+    local baseRedstone = redstone
+    local function mergeInvArrays(...)
+        local result = {}
+        -- Iterate through all tables passed as arguments
+        for _, currentTable in ipairs({...}) do
+            -- Insert each value into the result table
+            for _, value in ipairs(currentTable) do
+                result[value] = true
+            end
+        end
+        return result
+    end
+    local function fixName(name, expand)
+        if string.find(name, "$", 1, true) then
+            return expand..name
+        end
+        return name
+    end
+    local function handlethreeway(key, currentKeys)
+        for _, group in ipairs(threeWayToggle) do
+            if table.contains(group, key) then
+                local firstPressed = currentKeys[group[1]] ~= nil
+                local secondPressed = currentKeys[group[2]] ~= nil
+                local currentState = 0
+                if firstPressed and not secondPressed then
+                    currentState = 1
+                elseif secondPressed and not firstPressed then
+                    currentState = -1
+                end
+                keyStates[table.concat(group, "_")] = currentState
+            end
+        end
+    end
+    local threewayToggleKeys = mergeInvArrays(table.unpack(threeWayToggle))
+    local keyStates = {}
+    local previouskeys = {}
+    function self:register(env)
+        _ENV = env
+        for _, name in ipairs(peripheral.getNames()) do
+            if multipleSlots[name] == nil then
+                slots[peripheral.getType(name)] = peripheral.wrap(name)
+            else
+                if slots[peripheral.getType(name)] == nil then
+                    slots[peripheral.getType(name)] = {}
+                end
+                table.insert(slots[peripheral.getType(name)], peripheral.wrap(name))
+            end
+        end
+        if slots["control_panel"] ~= nil then
+            for _, element in pairs(slots["control_panel"].getModules()) do
+                if multipleSlotsCP[element.getType()] == nil then
+                    slots[element.getType()] = element
+                else
+                    if slots[element.getType()] == nil then
+                        slots[element.getType()] = {}
+                    end
+                    table.insert(slots[element.getType()], element)
+                end
+            end
+        end
+        if slots["linked_typewriter"] ~= nil then
+            register:addAction("onUpdate", "typewriter", function()
+                local currentKeyCodes = slots["linked_typewriter"].getKeys()
+                local currentKeys = {}
+                for _, keycode in pairs(currentKeyCodes) do
+                    local key = keys.getName(keycode)
+                    currentKeys[key] = true
+                    if previouskeys[key] == nil then
+                        previouskeys[key] = true
+                        register:callAction(key.."Start", key)
+                        if threewayToggleKeys[key] then
+                            handlethreeway(key, currentKeys)
+                        end
+                        keyStates[key] = 1
+                    else
+                        register:callAction(key.."Hold", key)
+                    end
+                end
+                for key, _ in pairs(previouskeys) do
+                    if currentKeys[key] == nil then
+                        previouskeys[key] = nil
+                        register:callAction(key.."Stop", key)
+                        if threewayToggleKeys[key] then
+                            handlethreeway(key, currentKeys)
+                        end
+                        keyStates[key] = 0
+                    end
+                end
+            end)
+        end
+        local linkconfig = getPlugin("conf", true, "", true)
+        if slots["redstone_relay"] ~= nil then
+            for name, target in pairs(linkconfig.redstone) do
+                local block, side = mysplit(name, "@")
+                block = fixName(block, "redstone_relay_")
+                if block == "" or block == nil then
+                    redstonelinks[target] = {
+                        wrap = baseRedstone,
+                        side = side
+                    }
+                elseif slots["redstone_relay"][block] ~= nil then
+                    redstonelinks[target] = {
+                        wrap = slots["redstone_relay"][block],
+                        side = side
+                    }
+                else
+                    print("Redstone relay " .. block .. " not found for target " .. target)
+                end
+            end
+        end
+        if slots["velocity_sensor"] ~= nil then
+            for block, target in pairs(linkconfig.vel) do
+                local block = fixName(block, "velocity_sensor_")
+                if slots["velocity_sensor"][block] ~= nil then
+                    sensors[target] = slots["velocity_sensor"][block]
+                else
+                    print("Velocity sensor " .. block .. " not found for target " .. target)
+                end
+            end
+        end
+        _ENV["redstoneAPI"] = redstoneAPI
+        _ENV["sensorAPI"] = sensorAPI
+    end
+    function self:getToggleState(key)
+        if keyStates[key] ~= nil then
+            return keyStates[key]
+        end
+        return 0
+    end
+    function redstoneAPI.setOutput(target, on)
+        if redstonelinks[target] ~= nil then
+            redstonelinks[target].wrap.setOutput(redstonelinks[target].side, on)
+        else
+            print("Redstone target " .. target .. " not found")
+        end
+    end
+    function redstoneAPI.getOutput(target)
+        if redstonelinks[target] ~= nil then
+            return redstonelinks[target].wrap.getOutput(redstonelinks[target].side)
+        end
+        print("Redstone target " .. target .. " not found")
+        return nil
+    end
+    function redstoneAPI.getInput(target)
+        if redstonelinks[target] ~= nil then
+            return redstonelinks[target].wrap.getInput(redstonelinks[target].side)
+        end
+        print("Redstone target " .. target .. " not found")
+        return nil
+    end
+    function redstoneAPI.setAnalogOutput(target, value)
+        if redstonelinks[target] ~= nil then
+            if redstonelinks[target].wrap.setAnalogOutput then
+                return redstonelinks[target].wrap.setAnalogOutput(redstonelinks[target].side, value)
+            elseif redstonelinks[target].wrap.setAnalogueOutput then
+                return redstonelinks[target].wrap.setAnalogueOutput(redstonelinks[target].side, value)
+            end
+        end
+        print("Redstone target " .. target .. " not found or method unavailable")
+        return nil
+    end
+    -- alias British spelling
+    function redstoneAPI.setAnalogueOutput(target, value)
+        return redstoneAPI.setAnalogOutput(target, value)
+    end
+    function redstoneAPI.getAnalogOutput(target)
+        if redstonelinks[target] ~= nil then
+            if redstonelinks[target].wrap.getAnalogOutput then
+                return redstonelinks[target].wrap.getAnalogOutput(redstonelinks[target].side)
+            elseif redstonelinks[target].wrap.getAnalogueOutput then
+                return redstonelinks[target].wrap.getAnalogueOutput(redstonelinks[target].side)
+            end
+        end
+        print("Redstone target " .. target .. " not found or method unavailable")
+        return nil
+    end
+    function redstoneAPI.getAnalogueOutput(target)
+        return redstoneAPI.getAnalogOutput(target)
+    end
+    function redstoneAPI.getAnalogInput(target)
+        if redstonelinks[target] ~= nil then
+            if redstonelinks[target].wrap.getAnalogInput then
+                return redstonelinks[target].wrap.getAnalogInput(redstonelinks[target].side)
+            elseif redstonelinks[target].wrap.getAnalogueInput then
+                return redstonelinks[target].wrap.getAnalogueInput(redstonelinks[target].side)
+            end
+        end
+        print("Redstone target " .. target .. " not found or method unavailable")
+        return nil
+    end
+    function redstoneAPI.getAnalogueInput(target)
+        return redstoneAPI.getAnalogInput(target)
+    end
+    function redstoneAPI.getTargets()
+        local targets = {}
+        for target, _ in pairs(redstonelinks) do
+            table.insert(targets, target)
+        end
+        return targets
+    end
+    function sensorAPI.getAlt()
+        if slots["altitude_sensor"] ~= nil then
+            return slots["altitude_sensor"].getHeight()
+        end
+        print("Altitude sensor not found")
+        return nil
+    end
+    function sensorAPI.getPressure()
+        if slots["altitude_sensor"] ~= nil then
+            return slots["altitude_sensor"].getAirPressure()
+        end
+        print("Altitude sensor not found")
+        return nil
+    end
+    function sensorAPI.getVelDown()
+        if sensors["vel_down"] ~= nil then
+            return sensors["vel_down"].getVelocity()
+        end
+        print("VelocityDown sensor not found")
+        return nil
+    end
+    function sensorAPI.getVelFor()
+        if sensors["vel_for"] ~= nil then
+            return sensors["vel_for"].getVelocity()
+        end
+        print("VelocityForward sensor not found")
+        return nil
+    end
+    function sensorAPI.getVelRight()
+        if sensors["vel_right"] ~= nil then
+            return sensors["vel_right"].getVelocity()
+        end
+        print("VelocityRight sensor not found")
+        return nil
+    end
+    function sensorAPI.getVel()
+        return vector.new(sensorAPI.getVelRight() or 0, sensorAPI.getVelDown() or 0, sensorAPI.getVelFor() or 0)
+    end
+    function sensorAPI.getYaw()
+        if slots["navball"] ~= nil then
+            return slots["navball"].getYaw()
+        end
+        print("Navball not found")
+        return nil
+    end
+    function sensorAPI.getPitch()
+        if slots["navball"] ~= nil then
+            return slots["navball"].getPitch()
+        end
+        print("Navball not found")
+        return nil
+    end
+    function sensorAPI.getRoll()
+        if slots["navball"] ~= nil then
+            return slots["navball"].getRoll()
+        end
+        print("Navball not found")
+        return nil
+    end
+    function sensorAPI.getAttitude()
+        return vector.new(sensorAPI.getYaw() or 0, sensorAPI.getPitch() or 0, sensorAPI.getRoll() or 0)
+    end
+    return self
+end
+
+rawPrint = print
+function print_err(msg,err)
+    if err then
+        err = tostring(err):gsub('"%-%- |STDERROR%-EVENTHANDLER[^"]*"', 'chunk'):gsub("&", "&amp;"):gsub("<", "&lt;"):gsub(">", "&gt;")
+    else
+        err = "???"
+    end
+    rawPrint(msg .. " ".. err)
+end
+function print(str)
+    rawPrint(tostring(str))
+end
+
+-- plugin handler
+local realRequire = require
+require = function(name) return print("require '" .. name.. "': deprecated, use getPlugin()") end 
+local plugins = {}
+local pluginCache = {}
+function plugins:fixName(name)
+    local pp = packagePrefix
+    if string.find(name, pp) then
+        name = string.gsub(name, pp, "")
+    end
+	return name
+end
+
+function plugins:unloadPlugin(name,noPrefix,key)
+	assert(type(name) == "string", "getPlugin: parameter name has to be string, was " .. type(name))
+	name = plugins:fixName(name)
+    local pp = packagePrefix
+    if type(pluginCache[name]) == "table" and pluginCache[name].valid ~= nil then
+        if pluginCache[name]:valid(key) ~= true then
+            return nil
+        end
+    end
+	if noPrefix then pp = "" end
+	if package.loaded ~= nil and package.loaded[pp..name] ~= nil then
+		package.loaded[pp..name] = nil
+	end
+	if pluginCache[name] ~= nil then
+		if type(pluginCache[name]) == "table" and type(pluginCache[name].unregister) == "function" then
+			pluginCache[name].unregister()
+		end
+		pluginCache[name] = nil
+	end
+end
+-- optional key, will checked on function "valid" before returning plugin if it exist, otherwise defaults to return plugin
+function plugins:getPlugin(name,noError,key,noPrefix)
+    assert(type(name) == "string", "getPlugin: parameter name has to be string, was " .. type(name))
+    if noError == nil then noError = false end
+	name = plugins:fixName(name)
+	
+    if not plugins:hasPlugin(name,noError,noPrefix) then return nil end
+
+    if type(pluginCache[name]) == "table" and pluginCache[name].valid ~= nil then
+        if pluginCache[name]:valid(key) ~= true then
+            if not noError then printError("getPlugin '"..name.."':".." Not valid or compatible") end
+            return nil
+        end
+    end
+
+    return pluginCache[name]
+end
+function plugins:hasPlugin(name,noError,noPrefix)
+    assert(type(name) == "string", "hasPlugin: parameter name has to be string, was " .. type(name))
+    if noError == nil then noError = false end
+    name = plugins:fixName(name)
+    local pp = packagePrefix
+	if noPrefix then pp = "" end
+	
+    if pluginCache[name] == nil then
+		pluginCache[name] = false
+
+        local ok, res = pcall(realRequire, pp..name)
+        if not ok then
+            if noError == nil or not noError then
+                printError("hasPlugin '"..name.."': require failed",res)
+            end
+        else
+            pluginCache[name] = res
+        end
+
+
+        if type(pluginCache[name]) == "table" then
+            if pluginCache[name].register ~= nil then
+                -- injecting globals to make sure they are available
+                if _ENV["register"] == nil then _ENV["register"] = register end
+
+                local ok2, res2 = pcall(pluginCache[name].register,pluginCache[name],_ENV)
+                if not ok2 and not noError then
+                    printError("hasPlugin '"..name.."': register failed",res2)
+                end
+            end
+        else
+            if pluginCache[name] ~= nil and pluginCache[name] ~= false then
+				if type(pluginCache[name]) == "string" then 
+					printError("hasPlugin '"..name.."':"..pluginCache[name])
+				else
+					printError("hasPlugin '"..name.."': not table value")
+				end
+                
+            end
+        end
+    end
+    return type(pluginCache[name]) == "table"
+end
+function unloadPlugin(name,noPrefix) return plugins:unloadPlugin(name,noPrefix) end
+function hasPlugin(name,noError,noPrefix) return plugins:hasPlugin(name,noError,noPrefix) end
+function getPlugin(name,noError,key,noPrefix) return plugins:getPlugin(name,noError,key,noPrefix) end
+local errorStack = {}
+
+-- NEEDS to be the FIRST initialized module! Register is the only implicit dependency
+
+-- Globals
+
+
+-- END globals
+
+-- helpers
+function collect_keys(t, sort)
+    local _k = {}
+    for k in pairs(t) do
+        _k[#_k+1] = k
+    end
+    table.sort(_k, sort)
+    return _k
+end
+function sortedPairs(t, sort)
+    local keys = collect_keys(t, sort)
+    local i = 0
+    return function()
+        i = i+1
+        if keys[i] then
+            return keys[i], t[keys[i]]
+        end
+    end
+end
+function tableLength(T)
+    local count = 0
+    for _ in pairs(T) do count = count + 1 end
+    return count
+end
+
+
+function timeit(title, f)
+    collectgarbage()
+    local startTime = clock()
+    local result = f()
+    local endTime = clock()
+    print( title .. ": " .. (endTime - startTime) )
+    return result
+end
+function getRelativePitch(velocity)
+    return math.deg(math.atan(velocity[2], velocity[3])) - 90
+end
+function getRelativeYaw(velocity)
+    return math.deg(math.atan(velocity[2], velocity[1])) - 90
+end
+function mysplit(inputstr, sep)
+    if sep == nil then sep = "%s" end
+    local t={}
+    for str in string.gmatch(inputstr, "([^"..sep.."]+)") do
+        table.insert(t, str)
+    end
+    return t
+end
+function inTable(tab, val)
+    if type(tab) ~= "table" then return false end
+    for k,v in pairs(tab) do
+        if v == val then return true,k end
+    end
+    return false
+end
+function round(num, numDecimalPlaces)
+    local mult = 10 ^ (numDecimalPlaces or 0)
+    if numDecimalPlaces ~= nil then
+        return math.floor(num * mult + 0.5) / mult
+    else
+        return math.floor((num * mult + 0.5) / mult)
+    end
+end
+
+-- END helpers
+register = getPlugin("register")
+slots = getPlugin("slots")
+
+--easier time with timers
+local Timer = {}
+local TimerTimes = {}
+
+function addTimer(time, callback)
+    if time == nil then time = 0 end
+    id = os.startTimer(time)
+    Timer[id] = callback
+    TimerTimes[id] = time
+end
+
+function onTimer(timerId)
+    if Timer[timerId] ~= nil then
+        local ok, err = pcall(Timer[timerId])
+        if not ok then printError("Timer:" .. err .. "  " .. timerId) end
+
+        if TimerTimes[timerId] ~= nil then
+            addTimer(TimerTimes[timerId], Timer[timerId])
+        end
+        Timer[timerId] = nil
+        TimerTimes[timerId] = nil
+    end
+end
+
+function stopTimer(id)
+    if id == nil then
+        for k,_ in pairs(Timer) do
+            Timer[k] = nil
+            TimerTimes[k] = nil
+            os.cancelTimer(k)
+        end
+        return
+    end
+
+    Timer[id] = nil
+    TimerTimes[id] = nil
+    os.cancelTimer(id)
+end
+
+function delay(func, time)
+    if time == nil then time = 0 end
+    id = os.startTimer(time)
+    Timer[id] = callback
+end
+
+register:addAction("timer", "Timer", onTimer)
+
+-- Load all registrations from all packages. Will be late init
+
+for name,_ in sortedPairs(package.preload) do
+	getPlugin(name,true)
+end
+
+sleep(0.1)
+
+register:callAction("StartUp")
+
+
+sleep()
+
+local function tickProgram()
+    while true do
+        register:callAction("onUpdate")
+        register:runTasks()
+        sleep(0) -- Yields for 1 tick
+    end
+end
+
+local function listenerProgram()
+    while true do
+        local event= os.pullEvent()
+        register:callAction(table.unpack(event))
+    end
+end
+
+if real_time then
+    parallel.waitForAll(tickProgram, listenerProgram)
+end
