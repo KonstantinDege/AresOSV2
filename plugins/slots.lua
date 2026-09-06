@@ -12,6 +12,10 @@ local redstoneAPI = {}
 local sensorAPI = {}
 local baseRedstone = redstone
 
+local threewayToggleKeys = mergeInvArrays(table.unpack(threeWayToggle))
+local keyStates = {}
+local previouskeys = {}
+
 local function mergeInvArrays(...)
     local result = {}
     -- Iterate through all tables passed as arguments
@@ -47,9 +51,7 @@ local function handlethreeway(key, currentKeys)
     end 
 end
 
-local threewayToggleKeys = mergeInvArrays(table.unpack(threeWayToggle))
-local keyStates = {}
-local previouskeys = {}
+
 function self:register(env)
     _ENV = env
 

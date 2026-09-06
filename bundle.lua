@@ -160,6 +160,9 @@ package.preload["slots"] = function(...)
     local redstoneAPI = {}
     local sensorAPI = {}
     local baseRedstone = redstone
+    local threewayToggleKeys = mergeInvArrays(table.unpack(threeWayToggle))
+    local keyStates = {}
+    local previouskeys = {}
     local function mergeInvArrays(...)
         local result = {}
         -- Iterate through all tables passed as arguments
@@ -192,9 +195,6 @@ package.preload["slots"] = function(...)
             end
         end
     end
-    local threewayToggleKeys = mergeInvArrays(table.unpack(threeWayToggle))
-    local keyStates = {}
-    local previouskeys = {}
     function self:register(env)
         _ENV = env
         for _, name in ipairs(peripheral.getNames()) do
