@@ -359,7 +359,6 @@ package.preload["slots"] = function(...)
     end
     function sensorAPI.getAlt()
         if slots["altitude_sensor"] ~= nil then
-        if slots["altitude_sensor"] ~= nil then
             return slots["altitude_sensor"].getHeight()
         end
         print("Altitude sensor not found")
