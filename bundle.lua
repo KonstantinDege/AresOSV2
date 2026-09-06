@@ -18,10 +18,7 @@ package.preload["black_box"] = function(...)
             end
             print(os.clock(),  SensorAPI.getYaw())
             for k,v in pairs(SensorAPI) do
-                if type(v) == "function" then
-                    v = v()
-                end
-                print(k,v)
+                print(k,v())
             end
         end)
     end
