@@ -1,15 +1,12 @@
-rawPrint = print
 function print_err(msg,err)
     if err then
         err = tostring(err):gsub('"%-%- |STDERROR%-EVENTHANDLER[^"]*"', 'chunk'):gsub("&", "&amp;"):gsub("<", "&lt;"):gsub(">", "&gt;")
     else
         err = "???"
     end
-    rawPrint(msg .. " ".. err)
+    print(msg .. " ".. err)
 end
-function print(str)
-    rawPrint(tostring(str))
-end
+
 
 -- plugin handler
 local realRequire = require

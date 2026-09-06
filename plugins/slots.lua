@@ -60,10 +60,10 @@ function self:register(env)
         if multipleSlots[name] == nil then
             slots[peripheral.getType(name)] = peripheral.wrap(name)
         else
-            -- if slots[peripheral.getType(name)] == nil then
-            --     slots[peripheral.getType(name)] = {}
-            -- end
-            -- table.insert(slots[peripheral.getType(name)], peripheral.wrap(name))
+            if slots[peripheral.getType(name)] == nil then
+                slots[peripheral.getType(name)] = {}
+            end
+            table.insert(slots[peripheral.getType(name)], peripheral.wrap(name))
         end
     end
     if slots["control_panel"] ~= nil then
@@ -143,19 +143,16 @@ function self:register(env)
 
     _ENV["RedstoneAPI"] = redstoneAPI
     _ENV["SensorAPI"] = sensorAPI
-     
-    _ENV["_sensors"] = sensors
-    _ENV["_redstone"] = redstonelinks
 end
 
-function self:getToggleState(key)
+function self.getToggleState(key)
     if keyStates[key] ~= nil then
         return keyStates[key]
     end
     return 0
 end
 
-function redstoneAPI:setOutput(target, on)
+function redstoneAPI.setOutput(target, on)
     if redstonelinks[target] ~= nil then
         redstonelinks[target].wrap.setOutput(redstonelinks[target].side, on)
     else
@@ -163,7 +160,7 @@ function redstoneAPI:setOutput(target, on)
     end
 end
 
-function redstoneAPI:getOutput(target)
+function redstoneAPI.getOutput(target)
     if redstonelinks[target] ~= nil then
         return redstonelinks[target].wrap.getOutput(redstonelinks[target].side)
     end
@@ -171,7 +168,7 @@ function redstoneAPI:getOutput(target)
     return nil
 end
 
-function redstoneAPI:getInput(target)
+function redstoneAPI.getInput(target)
     if redstonelinks[target] ~= nil then
         return redstonelinks[target].wrap.getInput(redstonelinks[target].side)
     end
@@ -179,7 +176,7 @@ function redstoneAPI:getInput(target)
     return nil
 end
 
-function redstoneAPI:setAnalogOutput(target, value)
+function redstoneAPI.setAnalogOutput(target, value)
     if redstonelinks[target] ~= nil then
         if redstonelinks[target].wrap.setAnalogOutput then
             return redstonelinks[target].wrap.setAnalogOutput(redstonelinks[target].side, value)
@@ -192,11 +189,11 @@ function redstoneAPI:setAnalogOutput(target, value)
 end
 
 -- alias British spelling
-function redstoneAPI:setAnalogueOutput(target, value)
-    return redstoneAPI:setAnalogOutput(target, value)
+function redstoneAPI.setAnalogueOutput(target, value)
+    return redstoneAPI.setAnalogOutput(target, value)
 end
 
-function redstoneAPI:getAnalogOutput(target)
+function redstoneAPI.getAnalogOutput(target)
     if redstonelinks[target] ~= nil then
         if redstonelinks[target].wrap.getAnalogOutput then
             return redstonelinks[target].wrap.getAnalogOutput(redstonelinks[target].side)
@@ -208,11 +205,11 @@ function redstoneAPI:getAnalogOutput(target)
     return nil
 end
 
-function redstoneAPI:getAnalogueOutput(target)
-    return redstoneAPI:getAnalogOutput(target)
+function redstoneAPI.getAnalogueOutput(target)
+    return redstoneAPI.getAnalogOutput(target)
 end
 
-function redstoneAPI:getAnalogInput(target)
+function redstoneAPI.getAnalogInput(target)
     if redstonelinks[target] ~= nil then
         if redstonelinks[target].wrap.getAnalogInput then
             return redstonelinks[target].wrap.getAnalogInput(redstonelinks[target].side)
@@ -224,11 +221,11 @@ function redstoneAPI:getAnalogInput(target)
     return nil
 end
 
-function redstoneAPI:getAnalogueInput(target)
-    return redstoneAPI:getAnalogInput(target)
+function redstoneAPI.getAnalogueInput(target)
+    return redstoneAPI.getAnalogInput(target)
 end
 
-function redstoneAPI:getTargets()
+function redstoneAPI.getTargets()
     local targets = {}
     for target, _ in pairs(redstonelinks) do
         table.insert(targets, target)
@@ -236,67 +233,67 @@ function redstoneAPI:getTargets()
     return targets
 end
 
-function sensorAPI:getAlt()
+function sensorAPI.getAlt()
     if slots["altitude_sensor"] ~= nil then
         return slots["altitude_sensor"].getHeight()
     end
     print("Altitude sensor not found")
     return nil
 end
-function sensorAPI:getPressure()
+function sensorAPI.getPressure()
     if slots["altitude_sensor"] ~= nil then
         return slots["altitude_sensor"].getAirPressure()
     end
     print("Altitude sensor not found")
     return nil
 end
-function sensorAPI:getVelDown()
+function sensorAPI.getVelDown()
     if sensors["vel_down"] ~= nil then
         return sensors["vel_down"].getVelocity()
     end
     print("VelocityDown sensor not found")
     return nil
 end
-function sensorAPI:getVelFor()
+function sensorAPI.getVelFor()
     if sensors["vel_for"] ~= nil then
         return sensors["vel_for"].getVelocity()
     end
     print("VelocityForward sensor not found")
     return nil
 end
-function sensorAPI:getVelRight()
+function sensorAPI.getVelRight()
     if sensors["vel_right"] ~= nil then
         return sensors["vel_right"].getVelocity()
     end
     print("VelocityRight sensor not found")
     return nil
 end
-function sensorAPI:getVel()
-    return vector.new(sensorAPI:getVelRight() or 0, sensorAPI:getVelDown() or 0, sensorAPI:getVelFor() or 0)
+function sensorAPI.getVel()
+    return vector.new(sensorAPI.getYelRight() or 0, sensorAPI.getVelDown() or 0, sensorAPI.getVelFor() or 0)
 end
 
-function sensorAPI:getYaw()
+function sensorAPI.getYaw()
     if slots["navball"] ~= nil then
         return slots["navball"].getYaw()
     end
     print("Navball not found")
     return nil
 end
-function sensorAPI:getPitch()
+function sensorAPI.getPitch()
     if slots["navball"] ~= nil then
         return slots["navball"].getPitch()
     end
     print("Navball not found")
     return nil
 end
-function sensorAPI:getRoll()
+function sensorAPI.getRoll()
     if slots["navball"] ~= nil then
         return slots["navball"].getRoll()
     end
     print("Navball not found")
     return nil
 end
-function sensorAPI:getAttitude()
-    return vector.new(sensorAPI:getYaw() or 0, sensorAPI:getPitch() or 0, sensorAPI:getRoll() or 0)
+function sensorAPI.getAttitude()
+    return vector.new(sensorAPI.getYaw() or 0, sensorAPI.getPitch() or 0, sensorAPI.getRoll() or 0)
 end
 return self
