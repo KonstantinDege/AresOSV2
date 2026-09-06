@@ -66,7 +66,7 @@ function plugins:hasPlugin(name,noError,noPrefix)
     if noError == nil then noError = false end
     name = plugins:fixName(name)
     local pp = packagePrefix
-	if noPrefix then pp = "" end
+	if noPrefix then pp = "/" end
 	
     if pluginCache[name] == nil then
 		pluginCache[name] = false
