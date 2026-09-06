@@ -275,7 +275,7 @@ package.preload["slots"] = function(...)
                 print("Velocity sensor " .. block .. " not found for target " .. target)
             end
         end
-        for k,v in sensors do
+        for k,v in pairs(sensors) do
             print("Sensor " .. k .. " found: " .. tostring(v))
         end
         _ENV["RedstoneAPI"] = redstoneAPI

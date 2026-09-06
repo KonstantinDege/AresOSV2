@@ -138,7 +138,7 @@ function self:register(env)
         end
     end
     
-    for k,v in sensors do 
+    for k,v in pairs(sensors) do 
         print("Sensor " .. k .. " found: " .. tostring(v))
     end
 
