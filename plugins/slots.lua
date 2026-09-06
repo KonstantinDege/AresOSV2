@@ -113,16 +113,16 @@ function self:register(env)
     if slots["redstone_relay"] ~= nil then
         for target, name in pairs(linkconfig.redstone) do
             local name = mysplit(name, "@")
-            block = fixName(block[1], "redstone_relay_")
+            local block = fixName(name[1], "redstone_relay_")
             if block == "" or block == nil then
                 redstonelinks[target] = {
                     wrap = baseRedstone,
-                    side = side[2]
+                    side = name[2]
                 }
             elseif slots["redstone_relay"][block] ~= nil then
                 redstonelinks[target] = {
                     wrap = slots["redstone_relay"][block],
-                    side = side[2]
+                    side = name[2]
                 }
             else
                 print("Redstone relay " .. block .. " not found for target " .. target)
