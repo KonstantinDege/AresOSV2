@@ -77,7 +77,7 @@ function self:register(env)
     end
     if slots["linked_typewriter"] ~= nil then
         register:addAction("onUpdate", "typewriter", function()
-            local currentKeyCodes = slots["linked_typewriter"].getKeys()
+            local currentKeyCodes = slots["linked_typewriter"].getCurrentKeyCodes()
             local currentKeys = {}
             for _, keycode in pairs(currentKeyCodes) do
                 local key = keys.getName(keycode)
