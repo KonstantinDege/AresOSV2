@@ -33,8 +33,8 @@ function self:addTask(name, func, priority, rating)
         assert(rating <= taskMaxRating ,  name .. ": rating has to be smaller then the allowed max rating of " .. taskMaxRating)
     end
 
-    if not self:hasAction("systemUpdate","registerTasker") then
-        self:addAction("systemUpdate","registerTasker",function() self:runTasks() end)
+    if not self:hasAction("onUpdate","registerTasker") then
+        self:addAction("onUpdate","registerTasker",function() self:runTasks() end)
     end
 
     if self.taskRegister[name] ~= nil then self:removeTask(name) end

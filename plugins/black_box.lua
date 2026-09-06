@@ -10,7 +10,7 @@ function self:register(env)
 
 
     register:addAction("onUpdate", "black_box", function()
-        print(clock(), SensorAPI.getVel(), SensorAPI.getPressure(), SensorAPI.getYaw())
+        print(clock(),  SensorAPI.getYaw())
     end)
 end
 
