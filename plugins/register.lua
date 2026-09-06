@@ -70,7 +70,7 @@ function self:runTasks()
                 currTasksRating = currTasksRating + regTask.rating
                 local ok, errorMsg = coroutine.resume(regTask.task)
                 if not ok then
-                    system.print(name .." in runTasks:",errorMsg)
+                    print(name .." in runTasks:",errorMsg)
                     self:removeTask(name)
                 end
             end
@@ -102,7 +102,7 @@ function self:callAction(action, ...)
     local results = {}
     if self.functionRegister[action] ~= nil then
         if devMode then
-            system.print("callAction: " .. action)
+            print("callAction: " .. action)
         end
         for name, func in pairs(self.functionRegister[action]) do
             if func ~= nil then
@@ -110,7 +110,7 @@ function self:callAction(action, ...)
                 if status then
                     results[name] = res
                 else
-                    system.print(name .." in callAction:",res)
+                    print(name .." in callAction:",res)
                 end
             end
         end
@@ -125,7 +125,7 @@ function self:callActionSpecific(action, name, ...)
 	if status then
 		return res
 	else
-		system.print(name .." in callActionSpecific:",res)
+		print(name .." in callActionSpecific:",res)
 	end
 end
 return self
