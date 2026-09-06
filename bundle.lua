@@ -6,11 +6,23 @@ package.preload["black_box"] = function(...)
     local self = {}
     self.version = 0.91
     self.loadPrio = 1000
+    local counter = 0
+    local skip = 10
     local data = {}
     function self:register(env)
         _ENV = env
         register:addAction("onUpdate", "black_box", function()
+            counter = counter + 1
+            if counter % skip == 0 then
+                return
+            end
             print(os.clock(),  SensorAPI.getYaw())
+            for k,v in pairs(SensorAPI) do
+                if type(v) == "function" then
+                    v = v()
+                end
+                print(k,v)
+            end
         end)
     end
     return self
@@ -162,7 +174,7 @@ package.preload["slots"] = function(...)
     end
     local function fixName(name, expand)
         if string.find(name, "$", 1, true) then
-            return expand..name
+            return string.gsub(name, "%$", expand)
         end
         return name
     end
@@ -210,7 +222,7 @@ package.preload["slots"] = function(...)
         end
         if slots["linked_typewriter"] ~= nil then
             register:addAction("onUpdate", "typewriter", function()
-                local currentKeyCodes = slots["linked_typewriter"].getCurrentKeyCodes()
+                local currentKeyCodes = slots["linked_typewriter"].getPressedKeyCodes()
                 local currentKeys = {}
                 for _, keycode in pairs(currentKeyCodes) do
                     local key = keys.getName(keycode)

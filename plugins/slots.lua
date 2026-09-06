@@ -25,7 +25,7 @@ local function mergeInvArrays(...)
 end
 local function fixName(name, expand)
     if string.find(name, "$", 1, true) then
-        return expand..name
+        return string.gsub(name, "%$", expand)
     end
     return name
 end
@@ -77,7 +77,7 @@ function self:register(env)
     end
     if slots["linked_typewriter"] ~= nil then
         register:addAction("onUpdate", "typewriter", function()
-            local currentKeyCodes = slots["linked_typewriter"].getCurrentKeyCodes()
+            local currentKeyCodes = slots["linked_typewriter"].getPressedKeyCodes()
             local currentKeys = {}
             for _, keycode in pairs(currentKeyCodes) do
                 local key = keys.getName(keycode)
