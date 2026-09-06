@@ -138,12 +138,15 @@ function self:register(env)
         end
     end
     
+    for k,v in sensors do 
+        print("Sensor " .. k .. " found: " .. tostring(v))
+    end
 
     _ENV["RedstoneAPI"] = redstoneAPI
     _ENV["SensorAPI"] = sensorAPI
 end
 
-function self:getToggleState(key)
+function self.getToggleState(key)
     if keyStates[key] ~= nil then
         return keyStates[key]
     end

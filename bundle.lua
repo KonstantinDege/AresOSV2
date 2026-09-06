@@ -7,19 +7,21 @@ package.preload["black_box"] = function(...)
     self.version = 0.91
     self.loadPrio = 1000
     local counter = 0
-    local skip = 10
+    local skip = 20
     local data = {}
+    local slots = nil
     function self:register(env)
         _ENV = env
+        slots = getPlugin("slots")
         register:addAction("onUpdate", "black_box", function()
             counter = counter + 1
             if counter % skip == 0 then
                 return
             end
-            print(os.clock(),  SensorAPI.getYaw())
-            for k,v in pairs(SensorAPI) do
-                print(k,v())
-            end
+            print(os.clock(),  SensorAPI.getYaw(), slot.getToggleState("w_s"))
+        end)
+        register:addAction("wStart", "test", function()
+            print("W pressed")
         end)
     end
     return self
@@ -273,10 +275,13 @@ package.preload["slots"] = function(...)
                 print("Velocity sensor " .. block .. " not found for target " .. target)
             end
         end
+        for k,v in sensors do
+            print("Sensor " .. k .. " found: " .. tostring(v))
+        end
         _ENV["RedstoneAPI"] = redstoneAPI
         _ENV["SensorAPI"] = sensorAPI
     end
-    function self:getToggleState(key)
+    function self.getToggleState(key)
         if keyStates[key] ~= nil then
             return keyStates[key]
         end
