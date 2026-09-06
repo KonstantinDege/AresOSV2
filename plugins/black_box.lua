@@ -17,7 +17,7 @@ function self:register(env)
             return
         end
 
-        print(os.clock(),  SensorAPI.getYaw(), slot.getToggleState("w_s"))
+        print(os.clock(),  SensorAPI.getYaw(), slots.getToggleState("w_s"))
 
     end)
     register:addAction("wStart", "test", function()
