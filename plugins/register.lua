@@ -70,7 +70,7 @@ function self:runTasks()
                 currTasksRating = currTasksRating + regTask.rating
                 local ok, errorMsg = coroutine.resume(regTask.task)
                 if not ok then
-                    print(name .." in runTasks:",errorMsg)
+                    printError(name .." in runTasks:",errorMsg)
                     self:removeTask(name)
                 end
             end
@@ -110,7 +110,7 @@ function self:callAction(action, ...)
                 if status then
                     results[name] = res
                 else
-                    print(name .." in callAction:",res)
+                    printError(name .." in callAction:",res)
                 end
             end
         end
@@ -125,7 +125,7 @@ function self:callActionSpecific(action, name, ...)
 	if status then
 		return res
 	else
-		print(name .." in callActionSpecific:",res)
+		printError(name .." in callActionSpecific:",res)
 	end
 end
 return self
