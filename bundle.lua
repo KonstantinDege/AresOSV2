@@ -160,7 +160,6 @@ package.preload["slots"] = function(...)
     local redstoneAPI = {}
     local sensorAPI = {}
     local baseRedstone = redstone
-    local threewayToggleKeys = mergeInvArrays(table.unpack(threeWayToggle))
     local keyStates = {}
     local previouskeys = {}
     local function mergeInvArrays(...)
@@ -174,6 +173,7 @@ package.preload["slots"] = function(...)
         end
         return result
     end
+    local threewayToggleKeys = mergeInvArrays(table.unpack(threeWayToggle))
     local function fixName(name, expand)
         if string.find(name, "$", 1, true) then
             return string.gsub(name, "%$", expand)
