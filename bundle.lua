@@ -7,7 +7,7 @@ package.preload["black_box"] = function(...)
     self.version = 0.91
     self.loadPrio = 1000
     local counter = 0
-    local skip = 20
+    local skip = 40
     local data = {}
     local slots = nil
     function self:register(env)
@@ -16,13 +16,13 @@ package.preload["black_box"] = function(...)
         register:addAction("onUpdate", "black_box", function()
             counter = counter + 1
             if counter % skip == 0 then
-                return
+                print(os.clock(),  SensorAPI.getYaw(), slots.getToggleState("w_s"))
             end
-            print(os.clock(),  SensorAPI.getYaw(), slots.getToggleState("w_s"))
         end)
         register:addAction("wStart", "test", function()
             print("W pressed")
         end)
+        getPlugin("optional", false, "", true)
     end
     return self
 end
