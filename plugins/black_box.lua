@@ -14,7 +14,7 @@ function self:register(env)
     register:addAction("onUpdate", "black_box", function()
         counter = counter + 1
         if counter % skip == 0 then
-            print(os.clock(),  SensorAPI.getYaw(), slots.getToggleState("w_s"))
+            print(os.clock(),  SensorAPI:getYaw(), slots:getToggleState("w_s"))
         end
     end)
     register:addAction("wStart", "test", function()
