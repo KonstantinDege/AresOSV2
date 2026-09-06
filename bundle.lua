@@ -238,9 +238,9 @@ package.preload["slots"] = function(...)
                 end
             end)
         end
-        local linkconfig = getPlugin("conf", true, "", true)
+        local linkconfig = getPlugin("conf", false, "", true)
         if slots["redstone_relay"] ~= nil then
-            for name, target in pairs(linkconfig.redstone) do
+            for target, name in pairs(linkconfig.redstone) do
                 local block, side = mysplit(name, "@")
                 block = fixName(block, "redstone_relay_")
                 if block == "" or block == nil then
@@ -259,7 +259,7 @@ package.preload["slots"] = function(...)
             end
         end
         if slots["velocity_sensor"] ~= nil then
-            for block, target in pairs(linkconfig.vel) do
+            for target, block in pairs(linkconfig.vel) do
                 local block = fixName(block, "velocity_sensor_")
                 if slots["velocity_sensor"][block] ~= nil then
                     sensors[target] = slots["velocity_sensor"][block]
@@ -268,8 +268,8 @@ package.preload["slots"] = function(...)
                 end
             end
         end
-        _ENV["redstoneAPI"] = redstoneAPI
-        _ENV["sensorAPI"] = sensorAPI
+        _ENV["RedstoneAPI"] = redstoneAPI
+        _ENV["SensorAPI"] = sensorAPI
     end
     function self:getToggleState(key)
         if keyStates[key] ~= nil then
