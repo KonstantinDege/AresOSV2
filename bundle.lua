@@ -179,7 +179,7 @@ package.preload["slots"] = function(...)
     end
     local function handlethreeway(key, currentKeys)
         for _, group in ipairs(threeWayToggle) do
-            if table.contains(group, key) then
+            if inTable(group, key) then
                 local firstPressed = currentKeys[group[1]] ~= nil
                 local secondPressed = currentKeys[group[2]] ~= nil
                 local currentState = 0
@@ -275,11 +275,10 @@ package.preload["slots"] = function(...)
                 print("Velocity sensor " .. block .. " not found for target " .. target)
             end
         end
-        for k,v in pairs(sensors) do
-            print("Sensor " .. k .. " found: " .. tostring(v))
-        end
         _ENV["RedstoneAPI"] = redstoneAPI
         _ENV["SensorAPI"] = sensorAPI
+        _ENV["_sensors"] = sensors
+        _ENV["_redstone"] = redstonelinks
     end
     function self.getToggleState(key)
         if keyStates[key] ~= nil then
@@ -359,6 +358,7 @@ package.preload["slots"] = function(...)
         return targets
     end
     function sensorAPI.getAlt()
+        if slots["altitude_sensor"] ~= nil then
         if slots["altitude_sensor"] ~= nil then
             return slots["altitude_sensor"].getHeight()
         end
