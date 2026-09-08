@@ -336,9 +336,9 @@ sleep(0.1)
 
 register:callAction("StartUp")
 
-getPlugin("optional", false, "", true)
+getPlugin("optional", true, "", true)
 
-getPlugin("plugin_list", false, "", false)
+getPlugin("plugin_list", true)
 
 sleep()
 
