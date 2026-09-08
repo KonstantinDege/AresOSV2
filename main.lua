@@ -14,10 +14,6 @@ require = function(name) return print("require '" .. name.. "': deprecated, use 
 local plugins = {}
 local pluginCache = {}
 
--- plugin download settings
-pluginDownloadEnabled = true -- allow downloading missing plugins if possible
-pluginAlwaysDownload = false -- if true always try to download even when local require fails
-pluginRepoBase = "http://skeleti.asuscomm.com:8000/plugins/"
 
 function plugins:fixName(name)
     local pp = packagePrefix

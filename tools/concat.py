@@ -120,8 +120,12 @@ def runtime_preload_text(
     # produce minimal preload-only content (no build helpers). If runtime
     # True, strip comments/extra lines.
     parts = []
-    parts.append(f'packagePrefix = "{package_prefix}"')
-    parts.append("real_time = true")
+    parts.append(f'local packagePrefix = "{package_prefix}"')
+    parts.append("pluginAlwaysDownload = false")
+    parts.append("pluginDownloadEnabled = true")
+    parts.append(
+        'local pluginRepoBase = "http://skeleti.asuscomm.com:8000/plugins/"')
+    parts.append("local real_time = true")
     parts.append("package = package or {}")
     parts.append("package.preload = package.preload or {}")
     for name, code in modules:
