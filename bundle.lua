@@ -1,47 +1,8 @@
-packagePrefix = ""
+packagePrefix = "plugins."
 real_time = true
 package = package or {}
 package.preload = package.preload or {}
-package.preload["flightdatarecorder"] = function(...)
-    local self = {}
-    self.version = 0.91
-    self.loadPrio = 1000
-    local counter = 0
-    local skip = 40
-    local data = {}
-    local slots = nil
-    local function sendJson(target, json)
-        local jsonStr = textutils.serialiseJSON(json)
-        return http.post(target, jsonStr)
-    end
-    function self:register(env)
-        _ENV = env
-        slots = getPlugin("slots")
-        register:addAction("onUpdate", "black_box", function()
-            if counter % skip == 0 then
-                local new = {
-                    alt = SensorAPI.getAlt(),
-                    pressure = SensorAPI.getPressure(),
-                    vel = SensorAPI.getVel(),
-                    attitude = SensorAPI.getAttitude(),
-                    keys = {},
-                    time = os.clock(),
-                }
-                for k,v in pairs(slots.getActiveKeys()) do
-                    new.keys[v] = slots.getToggleState(v)
-                end
-                local res, msg = sendJson("http://skeleti.asuscomm.com:8000/recorder", new)
-                if res == nil then
-                    print(msg)
-                end
-                table.insert(data, new)
-            end
-            counter = counter + 1
-        end)
-    end
-    return self
-end
-package.preload["register"] = function(...)
+package.preload["plugins.register"] = function(...)
     -- Register is handling all event registrations
     local self = {}
     self.functionRegister = {}
@@ -162,7 +123,7 @@ package.preload["register"] = function(...)
     end
     return self
 end
-package.preload["slots"] = function(...)
+package.preload["plugins.slots"] = function(...)
     local self = {}
     self.version = 0.91
     self.loadPrio = 1000
@@ -457,6 +418,12 @@ local realRequire = require
 require = function(name) return print("require '" .. name.. "': deprecated, use getPlugin()") end 
 local plugins = {}
 local pluginCache = {}
+
+-- plugin download settings
+pluginDownloadEnabled = true -- allow downloading missing plugins if possible
+pluginAlwaysDownload = false -- if true always try to download even when local require fails
+pluginRepoBase = "http://skeleti.asuscomm.com:8000/plugins/"
+
 function plugins:fixName(name)
     local pp = packagePrefix
     if string.find(name, pp) then
@@ -477,6 +444,7 @@ function plugins:unloadPlugin(name,noPrefix,key)
 	if noPrefix then pp = "" end
 	if package.loaded ~= nil and package.loaded[pp..name] ~= nil then
 		package.loaded[pp..name] = nil
+        package.preload[pp..name] = nil
 	end
 	if pluginCache[name] ~= nil then
 		if type(pluginCache[name]) == "table" and type(pluginCache[name].unregister) == "function" then
@@ -502,25 +470,119 @@ function plugins:getPlugin(name,noError,key,noPrefix)
 
     return pluginCache[name]
 end
+
+
+local function download_plugin(name,noError,noPrefix)
+    local pp = packagePrefix
+    if noPrefix then pp = "/" end
+
+    if http == nil then
+        if noError == nil or not noError then printError("hasPlugin '"..name.."': http API not available") end
+        return nil
+    end
+
+    local url = pluginRepoBase .. name .. ".lua"
+    local hres = http.get(url)
+    if not hres then
+        if noError == nil or not noError then printError("hasPlugin '"..name.."': download failed from "..url) end
+        return nil
+    end
+
+    local content = hres.readAll()
+    hres.close()
+
+    local base = tostring(name):match("([^/\\]+)$") or name
+
+    local saveDir = ""
+    if pp and pp ~= "/" and pp ~= "" then
+        saveDir = string.gsub(pp, "^/", "")
+        saveDir = string.gsub(saveDir, "%.", "/")
+        if saveDir:sub(-1) ~= "/" then saveDir = saveDir .. "/" end
+    else
+        saveDir = "" -- root
+    end
+
+    if saveDir ~= "" and not fs.exists(saveDir) then fs.makeDir(saveDir) end
+
+    local savePath = (saveDir ~= "" and (saveDir .. base .. ".lua")) or (base .. ".lua")
+
+    if fs.exists(savePath) then fs.delete(savePath) end
+
+    local f = fs.open(savePath, "w")
+    if not f then
+        if noError == nil or not noError then printError("hasPlugin '"..name.."': failed to save downloaded plugin") end
+        return nil
+    end
+
+    f.write(content)
+    f.close()
+
+    if package.loaded ~= nil and package.loaded[pp..name] ~= nil then
+        package.loaded[pp..name] = nil
+        package.preload[pp..name] = nil
+        pp = "/"..pp
+    end
+
+    local ok2, res2 = pcall(realRequire, "/"..pp..name)
+    if ok2 then
+        pluginCache[name] = res2
+        return res2
+    else
+        if noError == nil or not noError then printError("hasPlugin '"..name.."': require failed after download",res2) end
+        return nil
+    end
+end
+
+local function get_plugin(name,noError,noPrefix)
+    local pp = packagePrefix
+    if noPrefix then pp = "" end
+
+    if pluginAlwaysDownload and pluginDownloadEnabled then
+        local resD = download_plugin(name,noError,noPrefix)
+        if resD ~= nil then return resD end
+
+        if package.preload[pp..name] == nil then pp = "/"..pp end
+        local okLocal, resLocal = pcall(realRequire, pp..name)
+        if okLocal then
+            pluginCache[name] = resLocal
+            return resLocal
+        else
+            if noError == nil or not noError then printError("hasPlugin '"..name.."': require failed",resLocal) end
+            return nil
+        end
+    end
+
+    if package.preload[pp..name] == nil then pp = "/"..pp end
+    
+    local okLocal, resLocal = pcall(realRequire, pp..name)
+    if okLocal then
+        pluginCache[name] = resLocal
+        return resLocal
+    end
+
+    if pluginDownloadEnabled then
+        local resD = download_plugin(name,noError,noPrefix)
+        if resD ~= nil then return resD end
+    else
+        if noError == nil or not noError then printError("hasPlugin '"..name.."': plugin not found and download disabled") end
+    end
+    
+    if not okLocal then
+        if noError == nil or not noError then printError("hasPlugin '"..name.."': require failed",resLocal) end
+    end
+
+    return nil
+end
+
 function plugins:hasPlugin(name,noError,noPrefix)
     assert(type(name) == "string", "hasPlugin: parameter name has to be string, was " .. type(name))
     if noError == nil then noError = false end
     name = plugins:fixName(name)
-    local pp = packagePrefix
-	if noPrefix then pp = "/" end
-	
+
     if pluginCache[name] == nil then
 		pluginCache[name] = false
 
-        local ok, res = pcall(realRequire, pp..name)
-        if not ok then
-            if noError == nil or not noError then
-                printError("hasPlugin '"..name.."': require failed",res)
-            end
-        else
-            pluginCache[name] = res
-        end
-
+        pluginCache[name] = get_plugin(name,noError,noPrefix)
 
         if type(pluginCache[name]) == "table" then
             if pluginCache[name].register ~= nil then
@@ -545,6 +607,7 @@ function plugins:hasPlugin(name,noError,noPrefix)
     end
     return type(pluginCache[name]) == "table"
 end
+
 function unloadPlugin(name,noPrefix) return plugins:unloadPlugin(name,noPrefix) end
 function hasPlugin(name,noError,noPrefix) return plugins:hasPlugin(name,noError,noPrefix) end
 function getPlugin(name,noError,key,noPrefix) return plugins:getPlugin(name,noError,key,noPrefix) end
@@ -631,7 +694,7 @@ local TimerTimes = {}
 
 function addTimer(time, callback)
     if time == nil then time = 0 end
-    id = os.startTimer(time)
+    local id = os.startTimer(time)
     Timer[id] = callback
     TimerTimes[id] = time
 end
@@ -666,8 +729,8 @@ end
 
 function delay(func, time)
     if time == nil then time = 0 end
-    id = os.startTimer(time)
-    Timer[id] = callback
+    local id = os.startTimer(time)
+    Timer[id] = func
 end
 
 register:addAction("timer", "Timer", onTimer)
@@ -683,6 +746,8 @@ sleep(0.1)
 register:callAction("StartUp")
 
 getPlugin("optional", false, "", true)
+
+getPlugin("plugin_list", false, "", false)
 
 sleep()
 

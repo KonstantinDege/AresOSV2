@@ -16,6 +16,8 @@ function self:register(env)
     _ENV = env
     slots = getPlugin("slots")
 
+    print("Flight Data Recorder plugin registered. Recording every " .. skip .. " ticks.")
+
     register:addAction("onUpdate", "black_box", function()
         if counter % skip == 0 then
             local new = {

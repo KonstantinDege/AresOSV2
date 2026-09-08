@@ -39,6 +39,7 @@ function plugins:unloadPlugin(name,noPrefix,key)
 	if noPrefix then pp = "" end
 	if package.loaded ~= nil and package.loaded[pp..name] ~= nil then
 		package.loaded[pp..name] = nil
+        package.preload[pp..name] = nil
 	end
 	if pluginCache[name] ~= nil then
 		if type(pluginCache[name]) == "table" and type(pluginCache[name].unregister) == "function" then
@@ -65,9 +66,10 @@ function plugins:getPlugin(name,noError,key,noPrefix)
     return pluginCache[name]
 end
 
+
 local function download_plugin(name,noError,noPrefix)
     local pp = packagePrefix
-    if noPrefix then pp = "" end
+    if noPrefix then pp = "/" end
 
     if http == nil then
         if noError == nil or not noError then printError("hasPlugin '"..name.."': http API not available") end
@@ -84,16 +86,21 @@ local function download_plugin(name,noError,noPrefix)
     local content = hres.readAll()
     hres.close()
 
-    local saveDir = "plugins/"
+    local base = tostring(name):match("([^/\\]+)$") or name
+
+    local saveDir = ""
     if pp and pp ~= "/" and pp ~= "" then
         saveDir = string.gsub(pp, "^/", "")
+        saveDir = string.gsub(saveDir, "%.", "/")
         if saveDir:sub(-1) ~= "/" then saveDir = saveDir .. "/" end
+    else
+        saveDir = "" -- root
     end
 
-    if not fs.exists(saveDir) then fs.makeDir(saveDir) end
+    if saveDir ~= "" and not fs.exists(saveDir) then fs.makeDir(saveDir) end
 
-    local savePath = saveDir .. name .. ".lua"
-    -- ensure override if file exists
+    local savePath = (saveDir ~= "" and (saveDir .. base .. ".lua")) or (base .. ".lua")
+
     if fs.exists(savePath) then fs.delete(savePath) end
 
     local f = fs.open(savePath, "w")
@@ -107,9 +114,11 @@ local function download_plugin(name,noError,noPrefix)
 
     if package.loaded ~= nil and package.loaded[pp..name] ~= nil then
         package.loaded[pp..name] = nil
+        package.preload[pp..name] = nil
+        pp = "/"..pp
     end
 
-    local ok2, res2 = pcall(realRequire, pp..name)
+    local ok2, res2 = pcall(realRequire, "/"..pp..name)
     if ok2 then
         pluginCache[name] = res2
         return res2
@@ -119,15 +128,15 @@ local function download_plugin(name,noError,noPrefix)
     end
 end
 
-local function get_plugin(name,noError,key,noPrefix)
+local function get_plugin(name,noError,noPrefix)
     local pp = packagePrefix
     if noPrefix then pp = "" end
 
-    -- If configured to always try downloading first, attempt download and prefer it if successful
     if pluginAlwaysDownload and pluginDownloadEnabled then
         local resD = download_plugin(name,noError,noPrefix)
         if resD ~= nil then return resD end
-        -- download failed, fall back to local require
+
+        if package.preload[pp..name] == nil then pp = "/"..pp end
         local okLocal, resLocal = pcall(realRequire, pp..name)
         if okLocal then
             pluginCache[name] = resLocal
@@ -138,21 +147,23 @@ local function get_plugin(name,noError,key,noPrefix)
         end
     end
 
-    -- Normal flow: try local require first
+    if package.preload[pp..name] == nil then pp = "/"..pp end
+    
     local okLocal, resLocal = pcall(realRequire, pp..name)
     if okLocal then
         pluginCache[name] = resLocal
         return resLocal
-    else
-        if noError == nil or not noError then printError("hasPlugin '"..name.."': require failed",resLocal) end
     end
 
-    -- If local failed, try download (when allowed)
-    if pluginDownloadEnabled and not pluginAlwaysDownload then
+    if pluginDownloadEnabled then
         local resD = download_plugin(name,noError,noPrefix)
         if resD ~= nil then return resD end
     else
         if noError == nil or not noError then printError("hasPlugin '"..name.."': plugin not found and download disabled") end
+    end
+    
+    if not okLocal then
+        if noError == nil or not noError then printError("hasPlugin '"..name.."': require failed",resLocal) end
     end
 
     return nil
@@ -162,13 +173,11 @@ function plugins:hasPlugin(name,noError,noPrefix)
     assert(type(name) == "string", "hasPlugin: parameter name has to be string, was " .. type(name))
     if noError == nil then noError = false end
     name = plugins:fixName(name)
-    local pp = packagePrefix
-	if noPrefix then pp = "/" end
-	
+
     if pluginCache[name] == nil then
 		pluginCache[name] = false
 
-        pluginCache[name] = get_plugin(name,noError,nil,noPrefix)
+        pluginCache[name] = get_plugin(name,noError,noPrefix)
 
         if type(pluginCache[name]) == "table" then
             if pluginCache[name].register ~= nil then
@@ -193,6 +202,7 @@ function plugins:hasPlugin(name,noError,noPrefix)
     end
     return type(pluginCache[name]) == "table"
 end
+
 function unloadPlugin(name,noPrefix) return plugins:unloadPlugin(name,noPrefix) end
 function hasPlugin(name,noError,noPrefix) return plugins:hasPlugin(name,noError,noPrefix) end
 function getPlugin(name,noError,key,noPrefix) return plugins:getPlugin(name,noError,key,noPrefix) end
@@ -331,6 +341,8 @@ sleep(0.1)
 register:callAction("StartUp")
 
 getPlugin("optional", false, "", true)
+
+getPlugin("plugin_list", false, "", false)
 
 sleep()
 

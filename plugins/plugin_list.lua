@@ -4,7 +4,8 @@ self.loadPrio = 1000
 
 function self:register(env)
     _ENV = env
-    slots = getPlugin("flightdatarecorder")
+    print("Plugin list registered.")
+    slots = getPlugin("flightdatarecorder", true)
 end
 
 return self
