@@ -2,7 +2,7 @@ packagePrefix = ""
 real_time = true
 package = package or {}
 package.preload = package.preload or {}
-package.preload["black_box"] = function(...)
+package.preload["flightdatarecorder"] = function(...)
     local self = {}
     self.version = 0.91
     self.loadPrio = 1000
@@ -10,19 +10,34 @@ package.preload["black_box"] = function(...)
     local skip = 40
     local data = {}
     local slots = nil
+    local function sendJson(target, json)
+        local jsonStr = textutils.serialiseJSON(json)
+        return http.post(target, jsonStr)
+    end
     function self:register(env)
         _ENV = env
         slots = getPlugin("slots")
         register:addAction("onUpdate", "black_box", function()
-            counter = counter + 1
             if counter % skip == 0 then
-                print(os.clock(),  SensorAPI:getYaw(), slots:getToggleState("w_s"))
+                local new = {
+                    alt = SensorAPI.getAlt(),
+                    pressure = SensorAPI.getPressure(),
+                    vel = SensorAPI.getVel(),
+                    attitude = SensorAPI.getAttitude(),
+                    keys = {},
+                    time = os.clock(),
+                }
+                for k,v in pairs(slots.getActiveKeys()) do
+                    new.keys[v] = slots.getToggleState(v)
+                end
+                local res, msg = sendJson("http://skeleti.asuscomm.com:8000/recorder", new)
+                if res == nil then
+                    print(msg)
+                end
+                table.insert(data, new)
             end
+            counter = counter + 1
         end)
-        register:addAction("wStart", "test", function()
-            print("W pressed")
-        end)
-        getPlugin("optional", false, "", true)
     end
     return self
 end
@@ -284,6 +299,13 @@ package.preload["slots"] = function(...)
         end
         return 0
     end
+    function self.getActiveKeys(key)
+        ret = {}
+        for key, _ in pairs(keyStates) do
+            table.insert(ret, key)
+        end
+        return ret
+    end
     function redstoneAPI.setOutput(target, on)
         if redstonelinks[target] ~= nil then
             redstonelinks[target].wrap.setOutput(redstonelinks[target].side, on)
@@ -391,7 +413,7 @@ package.preload["slots"] = function(...)
         return nil
     end
     function sensorAPI.getVel()
-        return vector.new(sensorAPI.getYelRight() or 0, sensorAPI.getVelDown() or 0, sensorAPI.getVelFor() or 0)
+        return vector.new(sensorAPI.getVelFor() or 0, sensorAPI.getVelRight() or 0, sensorAPI.getVelDown() or 0)
     end
     function sensorAPI.getYaw()
         if slots["navball"] ~= nil then
@@ -415,7 +437,7 @@ package.preload["slots"] = function(...)
         return nil
     end
     function sensorAPI.getAttitude()
-        return vector.new(sensorAPI.getYaw() or 0, sensorAPI.getPitch() or 0, sensorAPI.getRoll() or 0)
+        return vector.new(sensorAPI.getRoll() or 0, sensorAPI.getPitch() or 0, sensorAPI.getYaw() or 0)
     end
     return self
 end
@@ -660,6 +682,7 @@ sleep(0.1)
 
 register:callAction("StartUp")
 
+getPlugin("optional", false, "", true)
 
 sleep()
 

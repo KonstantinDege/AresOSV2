@@ -238,6 +238,7 @@ sleep(0.1)
 
 register:callAction("StartUp")
 
+getPlugin("optional", false, "", true)
 
 sleep()
 
