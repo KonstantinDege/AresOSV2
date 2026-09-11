@@ -5,12 +5,10 @@ local slots = {}
 local multipleSlots = {"redstone_relay", "velocity_sensor"}
 local multipleSlotsCP = {"redstone_relay"}
 local threeWayToggle = {{"w", "s"}, {"a", "d"}, {"q", "e"}}
+local baseRedstone = redstone
 
 local sensors = {}
 local redstonelinks = {}
-local redstoneAPI = {}
-local sensorAPI = {}
-local baseRedstone = redstone
 
 local keyStates = {}
 local previouskeys = {}
@@ -140,9 +138,6 @@ function self:register(env)
             print("Velocity sensor " .. block .. " not found for target " .. target)
         end
     end
-
-    _ENV["RedstoneAPI"] = redstoneAPI
-    _ENV["SensorAPI"] = sensorAPI
 end
 
 function self.getToggleState(key)
@@ -160,148 +155,13 @@ function self.getActiveKeys(key)
     return ret
 end
 
-function redstoneAPI.setOutput(target, on)
-    if redstonelinks[target] ~= nil then
-        redstonelinks[target].wrap.setOutput(redstonelinks[target].side, on)
-    else
-        print("Redstone target " .. target .. " not found")
-    end
+function self.getRedstoneLinks() 
+    return redstonelinks
 end
 
-function redstoneAPI.getOutput(target)
-    if redstonelinks[target] ~= nil then
-        return redstonelinks[target].wrap.getOutput(redstonelinks[target].side)
-    end
-    print("Redstone target " .. target .. " not found")
-    return nil
+function self.getSensors() 
+    return sensors
 end
 
-function redstoneAPI.getInput(target)
-    if redstonelinks[target] ~= nil then
-        return redstonelinks[target].wrap.getInput(redstonelinks[target].side)
-    end
-    print("Redstone target " .. target .. " not found")
-    return nil
-end
-
-function redstoneAPI.setAnalogOutput(target, value)
-    if redstonelinks[target] ~= nil then
-        if redstonelinks[target].wrap.setAnalogOutput then
-            return redstonelinks[target].wrap.setAnalogOutput(redstonelinks[target].side, value)
-        elseif redstonelinks[target].wrap.setAnalogueOutput then
-            return redstonelinks[target].wrap.setAnalogueOutput(redstonelinks[target].side, value)
-        end
-    end
-    print("Redstone target " .. target .. " not found or method unavailable")
-    return nil
-end
-
--- alias British spelling
-function redstoneAPI.setAnalogueOutput(target, value)
-    return redstoneAPI.setAnalogOutput(target, value)
-end
-
-function redstoneAPI.getAnalogOutput(target)
-    if redstonelinks[target] ~= nil then
-        if redstonelinks[target].wrap.getAnalogOutput then
-            return redstonelinks[target].wrap.getAnalogOutput(redstonelinks[target].side)
-        elseif redstonelinks[target].wrap.getAnalogueOutput then
-            return redstonelinks[target].wrap.getAnalogueOutput(redstonelinks[target].side)
-        end
-    end
-    print("Redstone target " .. target .. " not found or method unavailable")
-    return nil
-end
-
-function redstoneAPI.getAnalogueOutput(target)
-    return redstoneAPI.getAnalogOutput(target)
-end
-
-function redstoneAPI.getAnalogInput(target)
-    if redstonelinks[target] ~= nil then
-        if redstonelinks[target].wrap.getAnalogInput then
-            return redstonelinks[target].wrap.getAnalogInput(redstonelinks[target].side)
-        elseif redstonelinks[target].wrap.getAnalogueInput then
-            return redstonelinks[target].wrap.getAnalogueInput(redstonelinks[target].side)
-        end
-    end
-    print("Redstone target " .. target .. " not found or method unavailable")
-    return nil
-end
-
-function redstoneAPI.getAnalogueInput(target)
-    return redstoneAPI.getAnalogInput(target)
-end
-
-function redstoneAPI.getTargets()
-    local targets = {}
-    for target, _ in pairs(redstonelinks) do
-        table.insert(targets, target)
-    end
-    return targets
-end
-
-function sensorAPI.getAlt()
-    if slots["altitude_sensor"] ~= nil then
-        return slots["altitude_sensor"].getHeight()
-    end
-    print("Altitude sensor not found")
-    return nil
-end
-function sensorAPI.getPressure()
-    if slots["altitude_sensor"] ~= nil then
-        return slots["altitude_sensor"].getAirPressure()
-    end
-    print("Altitude sensor not found")
-    return nil
-end
-function sensorAPI.getVelDown()
-    if sensors["vel_down"] ~= nil then
-        return sensors["vel_down"].getVelocity()
-    end
-    print("VelocityDown sensor not found")
-    return nil
-end
-function sensorAPI.getVelFor()
-    if sensors["vel_for"] ~= nil then
-        return sensors["vel_for"].getVelocity()
-    end
-    print("VelocityForward sensor not found")
-    return nil
-end
-function sensorAPI.getVelRight()
-    if sensors["vel_right"] ~= nil then
-        return sensors["vel_right"].getVelocity()
-    end
-    print("VelocityRight sensor not found")
-    return nil
-end
-function sensorAPI.getVel()
-    return vector.new(sensorAPI.getVelFor() or 0, sensorAPI.getVelRight() or 0, sensorAPI.getVelDown() or 0)
-end
-
-function sensorAPI.getYaw()
-    if slots["navball"] ~= nil then
-        return slots["navball"].getYaw()
-    end
-    print("Navball not found")
-    return nil
-end
-function sensorAPI.getPitch()
-    if slots["navball"] ~= nil then
-        return slots["navball"].getPitch()
-    end
-    print("Navball not found")
-    return nil
-end
-function sensorAPI.getRoll()
-    if slots["navball"] ~= nil then
-        return slots["navball"].getRoll()
-    end
-    print("Navball not found")
-    return nil
-end
-function sensorAPI.getAttitude()
-    return vector.new(sensorAPI.getRoll() or 0, sensorAPI.getPitch() or 0, sensorAPI.getYaw() or 0)
-end
 return self
+

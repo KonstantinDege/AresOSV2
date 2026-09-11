@@ -8,8 +8,11 @@ self.vel = {
     vel_for   = "$7",
 }
 self.redstone = {
-    pitch_up   = "$1@right",
-    pitch_down = "$1@left",
+    left   = "$9@left",
+    right = "$9@right",
+    forward = "$8@left",
+    backward = "$8@right",
+    up = "$3@front",
 }
 
 return self

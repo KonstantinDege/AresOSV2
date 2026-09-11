@@ -1,205 +1,206 @@
-{"alt":148.5,"pressure":0.70964751817546,"time":703.15000000000009,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{}}
-{"alt":148.5,"pressure":0.70964751817546,"time":705.15000000000009,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{}}
-{"alt":148.5,"pressure":0.70964751817546,"time":707.15000000000009,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{}}
-{"alt":148.5,"pressure":0.70964751817546,"time":709.15000000000009,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{"w_s":0,"w":0}}
-{"alt":148.5,"pressure":0.70964751817546,"time":711.15000000000009,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{"w_s":0,"w":0}}
-{"alt":148.5,"pressure":0.70964751817546,"time":713.15000000000009,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{"w_s":0,"w":0}}
-{"alt":148.5,"pressure":0.70964751817546,"time":715.15000000000009,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{"w_s":0,"w":0}}
-{"alt":148.5,"pressure":0.70964751817546,"time":717.2,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{"w_s":0,"w":0}}
-{"alt":148.5,"pressure":0.70964751817546,"time":719.2,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{"w_s":0,"w":0}}
-{"alt":148.5,"pressure":0.70964751817546,"time":721.2,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{"w_s":0,"w":0}}
-{"alt":148.5,"pressure":0.70964751817546,"time":723.25,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{"w_s":0,"w":0}}
-{"alt":148.5,"pressure":0.70964751817546,"time":725.25,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{"w_s":0,"w":0}}
-{"alt":148.5,"pressure":0.70964751817546,"time":727.25,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{"w_s":0,"w":0}}
-{"alt":148.5,"pressure":0.70964751817546,"time":729.25,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{"q":0,"a_d":0,"q_e":0,"w_s":1,"e":0,"d":0,"w":1,"a":0}}
-{"alt":148.5,"pressure":0.70964751817546,"time":731.25,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{"q":0,"a_d":0,"q_e":0,"w_s":0,"e":0,"d":0,"w":0,"a":0}}
-{"alt":148.5,"pressure":0.70964751817546,"time":733.25,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{"q":0,"a_d":0,"q_e":0,"w_s":0,"e":0,"d":0,"w":0,"a":0}}
-{"alt":148.5,"pressure":0.70964751817546,"time":735.45,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{"q":0,"a_d":0,"q_e":0,"w_s":0,"e":0,"d":0,"w":0,"a":0}}
-{"alt":148.5,"pressure":0.70964751817546,"time":737.45,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{"q":0,"a_d":0,"q_e":0,"w_s":0,"e":0,"d":0,"w":0,"a":0}}
-{"alt":148.5,"pressure":0.70964751817546,"time":739.45,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{"q":0,"a_d":0,"q_e":0,"w_s":0,"e":0,"d":0,"w":0,"a":0}}
-{"alt":148.5,"pressure":0.70964751817546,"time":741.5,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{"q":0,"a_d":0,"q_e":0,"w_s":0,"e":0,"d":0,"w":0,"a":0}}
-{"alt":148.5,"pressure":0.70964751817546,"time":743.5,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{"q":0,"a_d":0,"q_e":0,"w_s":0,"e":0,"d":0,"w":0,"a":0}}
-{"alt":148.5,"pressure":0.70964751817546,"time":745.5,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{"q":0,"a_d":0,"q_e":0,"w_s":0,"e":0,"d":0,"w":0,"a":0}}
-{"alt":148.5,"pressure":0.70964751817546,"time":747.5,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{"q":0,"a_d":0,"q_e":0,"w_s":0,"e":0,"d":0,"w":0,"a":0}}
-{"alt":148.5,"pressure":0.70964751817546,"time":749.55000000000007,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{"q":0,"a_d":0,"q_e":0,"w_s":0,"e":0,"d":0,"w":0,"a":0}}
-{"alt":148.5,"pressure":0.70964751817546,"time":751.55000000000007,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{"q":0,"a_d":0,"q_e":0,"w_s":0,"e":0,"d":0,"w":0,"a":0}}
-{"alt":148.5,"pressure":0.70964751817546,"time":753.55000000000007,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{"q":0,"a_d":0,"q_e":0,"w_s":0,"e":0,"d":0,"w":0,"a":0}}
-{"alt":148.5,"pressure":0.70964751817546,"time":755.6,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{"q":0,"a_d":0,"q_e":0,"w_s":0,"e":0,"d":0,"w":0,"a":0}}
-{"alt":148.5,"pressure":0.70964751817546,"time":757.6,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{"q":0,"a_d":0,"q_e":0,"w_s":0,"e":0,"d":0,"w":0,"a":0}}
-{"alt":148.5,"pressure":0.70964751817546,"time":759.65000000000009,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{"q":0,"a_d":0,"q_e":0,"w_s":0,"e":0,"d":0,"w":0,"a":0}}
-{"alt":148.5,"pressure":0.70964751817546,"time":761.65000000000009,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{"q":0,"a_d":0,"q_e":0,"w_s":0,"e":0,"d":0,"w":0,"a":0}}
-{"alt":148.5,"pressure":0.70964751817546,"time":763.65000000000009,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{"q":0,"a_d":0,"q_e":0,"w_s":0,"e":0,"d":0,"w":0,"a":0}}
-{"alt":148.5,"pressure":0.70964751817546,"time":765.85,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{"q":0,"a_d":0,"q_e":0,"w_s":0,"e":0,"d":0,"w":0,"a":0}}
-{"alt":148.5,"pressure":0.70964751817546,"time":767.85,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{"q":0,"a_d":0,"q_e":0,"w_s":0,"e":0,"d":0,"w":0,"a":0}}
-{"alt":148.5,"pressure":0.70964751817546,"time":769.90000000000009,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{"q":0,"a_d":0,"q_e":0,"w_s":0,"e":0,"d":0,"w":0,"a":0}}
-{"alt":148.5,"pressure":0.70964751817546,"time":771.90000000000009,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{"q":0,"a_d":0,"q_e":0,"w_s":0,"e":0,"d":0,"w":0,"a":0}}
-{"alt":148.5,"pressure":0.70964751817546,"time":773.90000000000009,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{"q":0,"a_d":0,"q_e":0,"w_s":0,"e":0,"d":0,"w":0,"a":0}}
-{"alt":148.5,"pressure":0.70964751817546,"time":775.90000000000009,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{"q":0,"a_d":0,"q_e":0,"w_s":0,"e":0,"d":0,"w":0,"a":0}}
-{"alt":148.5,"pressure":0.70964751817546,"time":777.90000000000009,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{"q":0,"a_d":0,"q_e":0,"w_s":0,"e":0,"d":0,"w":0,"a":0}}
-{"alt":148.5,"pressure":0.70964751817546,"time":779.90000000000009,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{"q":0,"a_d":0,"q_e":0,"w_s":0,"e":0,"d":0,"w":0,"a":0}}
-{"alt":148.5,"pressure":0.70964751817546,"time":781.90000000000009,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{"q":0,"a_d":0,"q_e":0,"w_s":0,"e":0,"d":0,"w":0,"a":0}}
-{"alt":148.5,"pressure":0.70964751817546,"time":783.90000000000009,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{"q":0,"a_d":0,"q_e":0,"w_s":0,"e":0,"d":0,"w":0,"a":0}}
-{"alt":148.5,"pressure":0.70964751817546,"time":785.95,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{"q":0,"a_d":0,"q_e":0,"w_s":0,"e":0,"d":0,"w":0,"a":0}}
-{"alt":148.5,"pressure":0.70964751817546,"time":787.95,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{"q":0,"a_d":0,"q_e":0,"w_s":0,"e":0,"d":0,"w":0,"a":0}}
-{"alt":148.5,"pressure":0.70964751817546,"time":790,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{"q":0,"a_d":0,"q_e":0,"w_s":0,"e":0,"d":0,"w":0,"a":0}}
-{"alt":148.5,"pressure":0.70964751817546,"time":792.05000000000007,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{"q":0,"a_d":0,"q_e":0,"w_s":0,"e":0,"d":0,"w":0,"a":0}}
-{"alt":148.5,"pressure":0.70964751817546,"time":794.1,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{"q":0,"a_d":0,"q_e":0,"w_s":0,"e":0,"d":0,"w":0,"a":0}}
-{"alt":148.5,"pressure":0.70964751817546,"time":796.30000000000007,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{"q":0,"a_d":0,"q_e":0,"w_s":0,"e":0,"d":0,"w":0,"a":0}}
-{"alt":148.5,"pressure":0.70964751817546,"time":798.30000000000007,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{"q":0,"a_d":0,"q_e":0,"w_s":0,"e":0,"d":0,"w":0,"a":0}}
-{"alt":148.5,"pressure":0.70964751817546,"time":800.30000000000007,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{"q":0,"a_d":0,"q_e":0,"w_s":0,"e":0,"d":0,"w":0,"a":0}}
-{"alt":148.5,"pressure":0.70964751817546,"time":802.30000000000007,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{"q":0,"a_d":0,"q_e":0,"w_s":0,"e":0,"d":0,"w":0,"a":0}}
-{"alt":148.5,"pressure":0.70964751817546,"time":804.30000000000007,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{"q":0,"a_d":0,"q_e":0,"w_s":0,"e":0,"d":0,"w":0,"a":0}}
-{"alt":148.5,"pressure":0.70964751817546,"time":806.30000000000007,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{"q":0,"a_d":0,"q_e":0,"w_s":0,"e":0,"d":0,"w":0,"a":0}}
-{"alt":148.5,"pressure":0.70964751817546,"time":808.30000000000007,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{"q":0,"a_d":0,"q_e":0,"w_s":0,"e":0,"d":0,"w":0,"a":0}}
-{"alt":148.5,"pressure":0.70964751817546,"time":810.30000000000007,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{"q":0,"a_d":0,"q_e":0,"w_s":0,"e":0,"d":0,"w":0,"a":0}}
-{"alt":148.5,"pressure":0.70964751817546,"time":812.30000000000007,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{"q":0,"a_d":0,"q_e":0,"w_s":0,"e":0,"d":0,"w":0,"a":0}}
-{"alt":148.5,"pressure":0.70964751817546,"time":814.30000000000007,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{"q":0,"a_d":0,"q_e":0,"w_s":0,"e":0,"d":0,"w":0,"a":0}}
-{"alt":148.5,"pressure":0.70964751817546,"time":816.30000000000007,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{"q":0,"a_d":0,"q_e":0,"w_s":0,"e":0,"d":0,"w":0,"a":0}}
-{"alt":148.5,"pressure":0.70964751817546,"time":818.35,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{"q":0,"a_d":0,"q_e":0,"w_s":0,"e":0,"d":0,"w":0,"a":0}}
-{"alt":148.5,"pressure":0.70964751817546,"time":820.35,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{"q":0,"a_d":0,"q_e":0,"w_s":0,"e":0,"d":0,"w":0,"a":0}}
-{"alt":148.5,"pressure":0.70964751817546,"time":822.35,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{"q":0,"a_d":0,"q_e":0,"w_s":0,"e":0,"d":0,"w":0,"a":0}}
-{"alt":148.5,"pressure":0.70964751817546,"time":824.35,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{"q":0,"a_d":0,"q_e":0,"w_s":0,"e":0,"d":0,"w":0,"a":0}}
-{"alt":144.5,"pressure":0.72112107060905872,"time":250.60000000000002,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{}}
-{"alt":144.5,"pressure":0.72112107060905872,"time":252.60000000000002,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{}}
-{"alt":144.5,"pressure":0.72112107060905872,"time":254.60000000000002,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{}}
-{"alt":144.5,"pressure":0.72112107060905872,"time":256.6,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{}}
-{"alt":144.5,"pressure":0.72112107060905872,"time":497.45000000000005,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{}}
-{"alt":144.5,"pressure":0.72112107060905872,"time":499.45000000000005,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{}}
-{"alt":144.5,"pressure":0.72112107060905872,"time":501.6,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{}}
-{"alt":144.5,"pressure":0.72112107060905872,"time":503.6,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{}}
-{"alt":144.5,"pressure":0.72112107060905872,"time":138.9,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{}}
-{"alt":144.5,"pressure":0.72112107060905872,"time":140.95000000000002,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{}}
-{"alt":144.5,"pressure":0.72112107060905872,"time":143,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{}}
-{"alt":144.5,"pressure":0.72112107060905872,"time":145,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{}}
-{"alt":144.5,"pressure":0.72112107060905872,"time":147.05,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{}}
-{"alt":144.5,"pressure":0.72112107060905872,"time":149.05,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{}}
-{"alt":144.5,"pressure":0.72112107060905872,"time":151.1,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{}}
-{"alt":144.5,"pressure":0.72112107060905872,"time":153.15,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{}}
-{"alt":144.5,"pressure":0.72112107060905872,"time":155.20000000000002,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{}}
-{"alt":144.5,"pressure":0.72112107060905872,"time":157.20000000000002,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{}}
-{"alt":144.5,"pressure":0.72112107060905872,"time":159.20000000000002,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{}}
-{"alt":144.5,"pressure":0.72112107060905872,"time":161.25,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{}}
-{"alt":144.5,"pressure":0.72112107060905872,"time":177.25,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{}}
-{"alt":144.5,"pressure":0.72112107060905872,"time":179.25,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{}}
-{"alt":144.5,"pressure":0.72112107060905872,"time":181.3,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{}}
-{"alt":144.5,"pressure":0.72112107060905872,"time":189,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{}}
-{"alt":144.5,"pressure":0.72112107060905872,"time":204.20000000000002,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{}}
-{"alt":144.5,"pressure":0.72112107060905872,"time":206.20000000000002,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{}}
-{"alt":144.5,"pressure":0.72112107060905872,"time":140.15,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{}}
-{"alt":144.5,"pressure":0.72112107060905872,"time":142.15,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{}}
-{"alt":144.5,"pressure":0.72112107060905872,"time":144.15,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{}}
-{"alt":144.5,"pressure":0.72112107060905872,"time":146.15,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{}}
-{"alt":144.5,"pressure":0.72112107060905872,"time":148.15,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{}}
-{"alt":144.5,"pressure":0.72112107060905872,"time":150.15,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{}}
-{"alt":144.5,"pressure":0.72112107060905872,"time":152.15,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{}}
-{"alt":144.5,"pressure":0.72112107060905872,"time":154.15,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{}}
-{"alt":144.5,"pressure":0.72112107060905872,"time":156.15,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{}}
-{"alt":144.5,"pressure":0.72112107060905872,"time":158.35000000000002,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{}}
-{"alt":144.5,"pressure":0.72112107060905872,"time":160.35000000000002,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{}}
-{"alt":144.5,"pressure":0.72112107060905872,"time":162.35000000000002,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{}}
-{"alt":144.5,"pressure":0.72112107060905872,"time":164.35000000000002,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{}}
-{"alt":144.5,"pressure":0.72112107060905872,"time":166.35000000000002,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{}}
-{"alt":144.5,"pressure":0.72112107060905872,"time":168.35000000000002,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{}}
-{"alt":144.5,"pressure":0.72112107060905872,"time":170.4,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{}}
-{"alt":144.5,"pressure":0.72112107060905872,"time":172.4,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{}}
-{"alt":144.5,"pressure":0.72112107060905872,"time":174.4,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{}}
-{"alt":144.5,"pressure":0.72112107060905872,"time":176.4,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{}}
-{"alt":144.5,"pressure":0.72112107060905872,"time":178.4,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{}}
-{"alt":144.5,"pressure":0.72112107060905872,"time":180.45000000000002,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{}}
-{"alt":144.5,"pressure":0.72112107060905872,"time":182.5,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{}}
-{"alt":144.5,"pressure":0.72112107060905872,"time":184.55,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{}}
-{"alt":144.5,"pressure":0.72112107060905872,"time":186.55,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{}}
-{"alt":144.5,"pressure":0.72112107060905872,"time":188.75,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{}}
-{"alt":144.5,"pressure":0.72112107060905872,"time":190.75,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{}}
-{"alt":144.5,"pressure":0.72112107060905872,"time":192.75,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{}}
-{"alt":144.5,"pressure":0.72112107060905872,"time":194.8,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{}}
-{"alt":144.5,"pressure":0.72112107060905872,"time":196.85000000000002,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{}}
-{"alt":144.5,"pressure":0.72112107060905872,"time":198.9,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{}}
-{"alt":144.5,"pressure":0.72112107060905872,"time":200.9,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{}}
-{"alt":144.5,"pressure":0.72112107060905872,"time":202.9,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{}}
-{"alt":144.5,"pressure":0.72112107060905872,"time":204.95000000000002,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{}}
-{"alt":144.5,"pressure":0.72112107060905872,"time":206.95000000000002,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{}}
-{"alt":144.5,"pressure":0.72112107060905872,"time":208.95000000000002,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{}}
-{"alt":144.5,"pressure":0.72112107060905872,"time":211,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{}}
-{"alt":144.5,"pressure":0.72112107060905872,"time":213,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{}}
-{"alt":144.5,"pressure":0.72112107060905872,"time":215,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{}}
-{"alt":144.5,"pressure":0.72112107060905872,"time":217,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{}}
-{"alt":144.5,"pressure":0.72112107060905872,"time":219.20000000000002,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{}}
-{"alt":144.5,"pressure":0.72112107060905872,"time":221.25,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{}}
-{"alt":144.5,"pressure":0.72112107060905872,"time":223.25,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{}}
-{"alt":144.5,"pressure":0.72112107060905872,"time":225.25,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{}}
-{"alt":144.5,"pressure":0.72112107060905872,"time":227.25,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{}}
-{"alt":144.5,"pressure":0.72112107060905872,"time":229.25,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{}}
-{"alt":144.5,"pressure":0.72112107060905872,"time":231.3,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{}}
-{"alt":144.5,"pressure":0.72112107060905872,"time":233.35000000000002,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{}}
-{"alt":144.5,"pressure":0.72112107060905872,"time":235.4,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{}}
-{"alt":144.5,"pressure":0.72112107060905872,"time":237.45000000000002,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{}}
-{"alt":144.5,"pressure":0.72112107060905872,"time":239.45000000000002,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{}}
-{"alt":144.5,"pressure":0.72112107060905872,"time":241.5,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{}}
-{"alt":144.5,"pressure":0.72112107060905872,"time":243.55,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{}}
-{"alt":144.5,"pressure":0.72112107060905872,"time":245.55,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{}}
-{"alt":144.5,"pressure":0.72112107060905872,"time":247.60000000000002,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{}}
-{"alt":144.5,"pressure":0.72112107060905872,"time":249.8,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{}}
-{"alt":144.5,"pressure":0.72112107060905872,"time":251.85000000000002,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{}}
-{"alt":144.5,"pressure":0.72112107060905872,"time":253.85000000000002,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{}}
-{"alt":144.5,"pressure":0.72112107060905872,"time":255.85000000000002,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{}}
-{"alt":144.5,"pressure":0.72112107060905872,"time":257.85,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{}}
-{"alt":144.5,"pressure":0.72112107060905872,"time":259.85,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{}}
-{"alt":144.5,"pressure":0.72112107060905872,"time":261.85,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{}}
-{"alt":144.5,"pressure":0.72112107060905872,"time":263.85,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{}}
-{"alt":144.5,"pressure":0.72112107060905872,"time":265.85,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{}}
-{"alt":144.5,"pressure":0.72112107060905872,"time":267.85,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{}}
-{"alt":144.5,"pressure":0.72112107060905872,"time":269.85,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{}}
-{"alt":144.5,"pressure":0.72112107060905872,"time":271.85,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{}}
-{"alt":144.5,"pressure":0.72112107060905872,"time":273.85,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{}}
-{"alt":144.5,"pressure":0.72112107060905872,"time":275.85,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{}}
-{"alt":144.5,"pressure":0.72112107060905872,"time":277.85,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{}}
-{"alt":144.5,"pressure":0.72112107060905872,"time":280.05,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{}}
-{"alt":144.5,"pressure":0.72112107060905872,"time":282.1,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{}}
-{"alt":144.5,"pressure":0.72112107060905872,"time":284.1,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{}}
-{"alt":144.5,"pressure":0.72112107060905872,"time":286.1,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{}}
-{"alt":144.5,"pressure":0.72112107060905872,"time":288.1,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{}}
-{"alt":144.5,"pressure":0.72112107060905872,"time":290.1,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{}}
-{"alt":144.5,"pressure":0.72112107060905872,"time":292.15000000000003,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{}}
-{"alt":144.5,"pressure":0.72112107060905872,"time":294.15000000000003,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{}}
-{"alt":144.5,"pressure":0.72112107060905872,"time":2.75,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{}}
-{"alt":144.5,"pressure":0.72112107060905872,"time":4.75,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{}}
-{"alt":144.5,"pressure":0.72112107060905872,"time":10.950000000000001,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{}}
-{"alt":144.5,"pressure":0.72112107060905872,"time":12.950000000000001,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{}}
-{"alt":144.5,"pressure":0.72112107060905872,"time":14.950000000000001,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{}}
-{"alt":144.5,"pressure":0.72112107060905872,"time":17,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{}}
-{"alt":144.5,"pressure":0.72112107060905872,"time":19.05,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{}}
-{"alt":144.5,"pressure":0.72112107060905872,"time":21.1,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{}}
-{"alt":144.5,"pressure":0.72112107060905872,"time":23.150000000000002,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{}}
-{"alt":144.5,"pressure":0.72112107060905872,"time":25.200000000000003,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{}}
-{"alt":144.5,"pressure":0.72112107060905872,"time":27.25,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{}}
-{"alt":144.5,"pressure":0.72112107060905872,"time":29.25,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{"a":1,"a_d":1,"w_s":1,"d":0,"w":1}}
-{"alt":144.5,"pressure":0.72112107060905872,"time":31.3,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{"a":0,"a_d":0,"w_s":1,"d":0,"w":1,"leftShift":0}}
-{"alt":144.5,"pressure":0.72112107060905872,"time":33.300000000000004,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{"a":0,"a_d":0,"w_s":0,"d":0,"w":0,"leftShift":0}}
-{"alt":144.5,"pressure":0.72112107060905872,"time":35.300000000000004,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{"a":0,"a_d":0,"w_s":0,"d":0,"w":0,"leftShift":0}}
-{"alt":144.5,"pressure":0.72112107060905872,"time":37.300000000000004,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{"a":0,"a_d":0,"w_s":0,"d":0,"w":0,"leftShift":0}}
-{"alt":144.5,"pressure":0.72112107060905872,"time":39.300000000000004,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{"a":0,"a_d":0,"w_s":0,"d":0,"w":0,"leftShift":0}}
-{"alt":144.5,"pressure":0.72112107060905872,"time":41.300000000000004,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{"a":0,"a_d":0,"w_s":0,"d":0,"w":0,"leftShift":0}}
-{"alt":144.5,"pressure":0.72112107060905872,"time":43.5,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{"a":0,"a_d":0,"w_s":0,"d":0,"w":0,"leftShift":0}}
-{"alt":144.5,"pressure":0.72112107060905872,"time":45.5,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{"a":0,"a_d":0,"w_s":0,"d":0,"w":0,"leftShift":0}}
-{"alt":144.5,"pressure":0.72112107060905872,"time":47.5,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{"a":0,"a_d":0,"s":1,"w_s":-1,"d":0,"w":0,"leftShift":0}}
-{"alt":144.5,"pressure":0.72112107060905872,"time":49.5,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{"a":0,"a_d":0,"s":1,"w_s":-1,"d":0,"w":0,"leftShift":0}}
-{"alt":144.5,"pressure":0.72112107060905872,"time":51.550000000000004,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{"a":0,"a_d":0,"s":1,"w_s":-1,"d":0,"w":0,"leftShift":0}}
-{"alt":144.5,"pressure":0.72112107060905872,"time":53.6,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{"a":0,"a_d":0,"s":0,"w_s":0,"d":0,"w":0,"leftShift":0}}
-{"alt":144.5,"pressure":0.72112107060905872,"time":55.650000000000006,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{"a":0,"a_d":0,"s":0,"w_s":0,"d":0,"w":0,"leftShift":0}}
-{"alt":144.5,"pressure":0.72112107060905872,"time":57.7,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{"a":0,"a_d":0,"s":0,"w_s":0,"d":0,"w":0,"leftShift":0}}
-{"alt":144.5,"pressure":0.72112107060905872,"time":59.7,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{"a":0,"a_d":0,"s":0,"w_s":0,"d":0,"w":0,"leftShift":0}}
-{"alt":144.5,"pressure":0.72112107060905872,"time":61.7,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{"a":0,"a_d":0,"s":0,"w_s":0,"d":0,"w":0,"leftShift":0}}
-{"alt":144.5,"pressure":0.72112107060905872,"time":63.7,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{"a":0,"a_d":0,"s":0,"w_s":0,"d":0,"w":0,"leftShift":0}}
-{"alt":144.5,"pressure":0.72112107060905872,"time":321.20000000000005,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{}}
-{"alt":144.5,"pressure":0.72112107060905872,"time":323.20000000000005,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{}}
-{"alt":144.5,"pressure":0.72112107060905872,"time":325.20000000000005,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{}}
-{"alt":144.5,"pressure":0.72112107060905872,"time":2.1,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{}}
-{"alt":144.5,"pressure":0.72112107060905872,"time":4.15,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{}}
-{"alt":144.5,"pressure":0.72112107060905872,"time":6.15,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{}}
-{"alt":144.5,"pressure":0.72112107060905872,"time":90.95,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{}}
-{"alt":144.5,"pressure":0.72112107060905872,"time":92.95,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{}}
-{"alt":144.5,"pressure":0.72112107060905872,"time":97.9,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{}}
-{"alt":144.5,"pressure":0.72112107060905872,"time":99.95,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{}}
-{"alt":144.5,"pressure":0.72112107060905872,"time":327.3,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{}}
-{"alt":144.5,"pressure":0.72112107060905872,"time":329.3,"vel":{"y":0,"x":0,"z":0},"attitude":{"y":0,"x":0,"z":0},"keys":{}}
+_G.quaternion: table: 81f7d4f
+_G.quaternion.fromComponents: function: 590fe246
+_G.quaternion.fromComponents function(x,y,z,w)
+_G.quaternion.fromComponents().a: 1
+_G.quaternion.fromComponents().v: 0,0,0
+_G.quaternion.fromComponents().v.y: 0
+_G.quaternion.fromComponents().v.x: 0
+_G.quaternion.fromComponents().v.z: 0
+_G.quaternion.fromEuler: function: 45ce6379
+_G.quaternion.fromEuler function(pitch,yaw,roll)
+_G.quaternion.fromEuler().a: 1
+_G.quaternion.fromEuler().v: 0,0,0
+_G.quaternion.fromEuler().v.y: 0
+_G.quaternion.fromEuler().v.x: 0
+_G.quaternion.fromEuler().v.z: 0
+_G.quaternion.new: function: 5d07b78b
+_G.quaternion.new function(vec,w)
+_G.quaternion.new().a: 1
+_G.quaternion.new().v: 0,0,0
+_G.quaternion.new().v.y: 0
+_G.quaternion.new().v.x: 0
+_G.quaternion.new().v.z: 0
+_G.quaternion.fromAxisAngle: function: 6db794bc
+_G.quaternion.fromAxisAngle function(axis,angle)
+_G.quaternion.fromAxisAngle().a: 1
+_G.quaternion.fromAxisAngle().v: 0,0,0
+_G.quaternion.fromAxisAngle().v.y: 0
+_G.quaternion.fromAxisAngle().v.x: 0
+_G.quaternion.fromAxisAngle().v.z: 0
+_G.quaternion.fromMatrix: function: 380ecf6b
+_G.quaternion.fromMatrix function(m)
+_G.quaternion.identity: function: 23943841
+_G.quaternion.identity function()
+_G.quaternion.identity().a: 1
+_G.quaternion.identity().v: 0,0,0
+_G.quaternion.identity().v.y: 0
+_G.quaternion.identity().v.x: 0
+_G.quaternion.identity().v.z: 0
+_G.quaternion.fromShip: function: 5bed5720
+_G.quaternion.fromShip function()
+_G.fs: table: 420dd188
+_G.fs.makeDir: function: 55ce78c3
+_G.fs.makeDir function()
+_G.fs.getCapacity: function: 6ed6e07b
+_G.fs.getCapacity function()
+_G.fs.complete: function: 6b5e78cd
+_G.fs.complete function(sPath,sLocation,bIncludeFiles,bIncludeDirs)
+_G.fs.copy: function: 45d684e1
+_G.fs.copy function()
+_G.fs.isDir: function: 2a5e41d
+_G.fs.isDir function()
+_G.fs.list: function: 376ca642
+_G.fs.list function()
+_G.fs.getSize: function: 5c3e2607
+_G.fs.getSize function()
+_G.fs.delete: function: 140c4842
+_G.fs.delete function()
+_G.fs.isReadOnly: function: 4cc6e15b
+_G.fs.isReadOnly function()
+_G.fs.getFreeSpace: function: 65c15513
+_G.fs.getFreeSpace function()
+_G.fs.find: function: 3799dbf
+_G.fs.find function(pattern)
+_G.fs.attributes: function: 7c8dac73
+_G.fs.attributes function()
+_G.fs.getDir: function: 34c5a417
+_G.fs.getDir function()
+_G.fs.move: function: 11aa1732
+_G.fs.move function()
+_G.fs.exists: function: 7d1e4605
+_G.fs.exists function()
+_G.fs.getDrive: function: 65df5191
+_G.fs.getDrive function()
+_G.fs.combine: function: 2bd8b88
+_G.fs.combine function()
+_G.fs.open: function: 3d17e33e
+_G.fs.open function()
+_G.fs.isDriveRoot: function: 44680d9
+_G.fs.isDriveRoot function(path)
+_G.fs.getName: function: 1df357a9
+_G.fs.getName function()
+_G.colours: table: 49498ada
+_G.colours.toBlit: function: 8a9e298
+_G.colours.toBlit function(color)
+_G.colours.cyan: 512
+_G.colours.packRGB: function: 17a2b25c
+_G.colours.packRGB function(r,g,b)
+_G.colours.purple: 1024
+_G.colours.fromBlit: function: 2ff0d00f
+_G.colours.fromBlit function(hex)
+_G.colours.brown: 4096
+_G.colours.lightGrey: 256
+_G.colours.orange: 2
+_G.colours.red: 16384
+_G.colours.magenta: 4
+_G.colours.lime: 32
+_G.colours.white: 1
+_G.colours.rgb8: function: 65409f3a
+_G.colours.rgb8 function(r,g,b)
+_G.colours.grey: 128
+_G.colours.green: 8192
+_G.colours.pink: 64
+_G.colours.combine: function: 6fd6b867
+_G.colours.combine function()
+_G.colours.combine() =>
+_G.colours.subtract: function: 920def8
+_G.colours.subtract function(colors)
+_G.colours.black: 32768
+_G.colours.unpackRGB: function: 3d045c2e
+_G.colours.unpackRGB function(rgb)
+_G.colours.test: function: 4135cbb7
+_G.colours.test function(colors,color)
+_G.colours.yellow: 16
+_G.colours.blue: 2048
+_G.colours.lightBlue: 8
+_G.tostring: function: 5fc1681e
+_G.tostring function()
+_G.os: table: 1d4f7af8
+_G.os.loadAPI: function: 69c67b05
+_G.os.loadAPI function(_sPath)
+_G.os.pullEventRaw: function: 7d519a4d
+_G.os.pullEventRaw function(sFilter)
+_G.os.getComputerID: function: 7e765e05
+_G.os.getComputerID function()
+_G.os.getComputerID() =>
+_G.os.startTimer: function: 6a6e8389
+_G.os.startTimer function()
+_G.os.queueEvent: function: a462e9
+_G.os.queueEvent function()
+_G.os.cancelTimer: function: 2a0942b0
+_G.os.cancelTimer function()
+_G.os.cancelAlarm: function: 72d41743
+_G.os.cancelAlarm function()
+_G.os.clock: function: 6e26d697
+_G.os.clock function()
+_G.os.clock() =>
+_G.os.setAlarm: function: 4a68a315
+_G.os.setAlarm function()
+_G.os.sleep: function: 33f70d21
+_G.os.sleep function(nTime)
+_G.os.computerID: function: 2a63e174
+_G.os.computerID function()
+_G.os.computerID() =>
+_G.os.unloadAPI: function: 156c4590
+_G.os.unloadAPI function(_sName)
+_G.os.setComputerLabel: function: 43ddf961
+_G.os.setComputerLabel function()
+_G.os.epoch: function: 17a2e493
+_G.os.epoch function()
+_G.os.epoch() =>
+_G.os.run: function: 3bc1d347
+_G.os.run function(_tEnv,_sPath)
+_G.os.date: function: 7c0a8e1e
+_G.os.date function()
+_G.os.date() =>
+_G.os.day: function: 2034e8f3
+_G.os.day function()
+_G.os.day() =>
+_G.os.computerLabel: function: 154ede0d
+_G.os.computerLabel function()
+_G.os.version: function: 72d076d4
+_G.os.version function()
+_G.os.version() =>
+_G.os.shutdown: function: c5d4c7f
+_G.os.shutdown function()
+_G.os.time: function: 128d047f
+_G.os.time function()
+_G.os.time() =>
+_G.os.pullEvent: function: 7f0fc40
+_G.os.pullEvent function(sFilter)
+_G.os.getComputerLabel: function: 7596b2a0
+_G.os.getComputerLabel function()
+_G.os.reboot: function: b86fc4c
+_G.os.reboot function()
+_G.bit32: table: 28e2e31e
+_G.bit32.band: function: 262dddb2
+_G.bit32.band function()
+_G.bit32.band() =>
+_G.bit32.extract: function: c860033
+_G.bit32.extract function()
+_G.bit32.bor: function: 6e79b3e7
+_G.bit32.bor function()
+_G.bit32.bor() =>
+_G.bit32.bnot: function: 45fd660d
+_G.bit32.bnot function()
+_G.bit32.bxor: function: 2a85be9e
+_G.bit32.bxor function()
+_G.bit32.bxor() =>
+_G.bit32.rshift: function: 3026e51a
+_G.bit32.rshift function()
+_G.bit32.rrotate: function: 16bdc5f2
+_G.bit32.rrotate function()
+_G.bit32.lshift: function: 64841e98
+_G.bit32.lshift function()
+_G.bit32.replace: function: 2560eb
+_G.bit32.replace function()
+_G.bit32.lrotate: function: 55768a29
+_G.bit32.lrotate function()
+_G.bit32.btest: function: 52a07436
+_G.bit32.btest function()
+_G.bit32.btest() =>
+_G.bit32.arshift: function: 6646fbeb
+_G.bit32.arshift function()
+_G.debug: table: 5f93ccf4
+_G.debug.getupvalue: function: 23d7f86e
+_G.debug.getupvalue function()
